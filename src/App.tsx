@@ -2,8 +2,13 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
-function App() {
+const App = () => {
   const [count, setCount] = useState(0);
+
+  const obj = {
+    name: "John",
+    age: 30,
+  };
 
   return (
     <div className="App">
@@ -17,7 +22,10 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          type="button"
+          onClick={() => setCount((count_: number) => count_ + 1)}
+        >
           count is {count}
         </button>
         <p>
@@ -29,6 +37,6 @@ function App() {
       </p>
     </div>
   );
-}
+};
 
 export default App;
