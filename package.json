@@ -14,15 +14,18 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
+    "path": "^0.12.7",
     "prettier": "^2.7.1",
     "prettier-eslint": "^15.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.54.0",
     "vite-plugin-esmodule": "^1.4.2"
   },
   "devDependencies": {
