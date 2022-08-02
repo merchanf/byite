@@ -1,7 +1,7 @@
 .Button {
   all: unset;
-  background-color: red;
-  color: white;
+  background-color: $green;
+  color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
   border-radius: 2.8rem;
 
   &:hover {
-    background-color: red;
+    background-color: $black;
   }
 
   &:active {
