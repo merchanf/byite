@@ -80,6 +80,26 @@ export default defineConfig({
         find: "@components",
         replacement: path.resolve(__dirname, "./src/components"),
       },
+      {
+        find: "@atoms",
+        replacement: path.resolve(__dirname, "./src/components/atoms"),
+      },
+      {
+        find: "@molecules",
+        replacement: path.resolve(__dirname, "./src/components/molecules"),
+      },
+      {
+        find: "@organisms",
+        replacement: path.resolve(__dirname, "./src/components/organisms"),
+      },
+      {
+        find: "@templates",
+        replacement: path.resolve(__dirname, "./src/components/templates"),
+      },
+      {
+        find: "@pages",
+        replacement: path.resolve(__dirname, "./src/pages"),
+      },
     ],
   },
   css: {

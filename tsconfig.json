@@ -17,7 +17,12 @@
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@atoms/*": ["./src/components/atoms/*"],
+      "@molecules/*": ["./src/components/molecules/*"],
+      "@organisms/*": ["./src/components/organisms/*"],
+      "@templates/*": ["./src/components/templates/*"],
+      "@pages/*": ["./src/pages/*"]
     }
   },
   "include": ["src"],
