@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Button from "@components/aksfdalksf/TextButton/TextButton";
-import "./App.css";
+import { useState } from 'react';
+import Button from '@components/atoms/TextButton/TextButton';
+import './App.css';
 
 const App = () => {
   const [count, setCount] = useState(0);

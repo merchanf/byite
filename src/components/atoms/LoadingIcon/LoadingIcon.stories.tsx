@@ -1,8 +1,8 @@
-import LoadingIcon from "./LoadingIcon";
+import LoadingIcon from './LoadingIcon';
 
 export default {
   component: LoadingIcon,
-  title: "Loading Icon",
+  title: 'Loading Icon',
 };
 
 export const Default = () => <LoadingIcon />;

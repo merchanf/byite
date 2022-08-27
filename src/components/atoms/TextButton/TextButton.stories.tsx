@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-import TextButton from "./TextButton";
+import TextButton from './TextButton';
 
 export default {
   component: TextButton,
-  title: "Text Button",
+  title: 'Text Button',
 };
 
 const onClick = () => {
-  console.log("click");
+  console.log('click');
 };
 
 export const Default = () => (

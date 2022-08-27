@@ -1,7 +1,7 @@
-import { FC } from "react";
-import cx from "classnames";
+import { FC } from 'react';
+import cx from 'classnames';
 
-import styles from "./TextButton.module.scss";
+import styles from './TextButton.module.scss';
 
 interface IButtonProps {
   className?: string;
