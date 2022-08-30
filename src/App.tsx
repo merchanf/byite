@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '@components/atoms/TextButton/TextButton';
+import CircularProgress from '@components/atoms/CircularProgress/CircularProgress';
 import './App.css';
 
 const App = () => {
@@ -14,9 +14,7 @@ const App = () => {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <Button onClick={() => setCount((count_: number) => count_ + 1)}>
-          count is {count}
-        </Button>
+        <CircularProgress />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

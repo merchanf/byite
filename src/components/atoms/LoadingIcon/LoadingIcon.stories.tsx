@@ -2,7 +2,7 @@ import LoadingIcon from './LoadingIcon';
 
 export default {
   component: LoadingIcon,
-  title: 'Loading Icon',
+  title: 'atoms/Loading Icon',
 };
 
 export const Default = () => <LoadingIcon />;

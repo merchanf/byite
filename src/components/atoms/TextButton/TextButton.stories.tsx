@@ -3,7 +3,7 @@ import TextButton from './TextButton';
 
 export default {
   component: TextButton,
-  title: 'Text Button',
+  title: 'atoms/Text Button',
 };
 
 const onClick = () => {
