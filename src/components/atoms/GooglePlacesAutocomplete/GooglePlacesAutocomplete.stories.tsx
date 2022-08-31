@@ -3,7 +3,7 @@ import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
 
 export default {
   component: GooglePlacesAutocomplete,
-  title: 'GooglePlacesAutocomplete',
+  title: 'atoms/GooglePlacesAutocomplete',
 };
 
 const onChange = (data: string) => {
