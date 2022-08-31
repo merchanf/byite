@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CircularProgress from '@components/atoms/CircularProgress/CircularProgress';
+import { CircularProgress } from '@atoms/index';
 import './App.css';
 
 const App = () => {
