@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import CP from '@mui/material/CircularProgress';
 
-import colors from '@constants/colors';
+import { colors } from '@constants/index';
 
 const { oldBurgundy } = colors;
 
