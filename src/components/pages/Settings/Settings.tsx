@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Title } from '@atoms/index';
+import { Title } from '@components/atoms/index';
 import styles from './Settings.module.scss';
 
 const Settings: FC = () => {

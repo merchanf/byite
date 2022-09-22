@@ -5,4 +5,4 @@ export default {
   title: 'atoms/Title',
 };
 
-export const Default = () => <Title text="Esto es un titulo" />;
+export const Default = () => <Title>Esto es un titulo</Title>;

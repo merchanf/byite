@@ -84,16 +84,16 @@ export default defineConfig({
         replacement: path.resolve(__dirname, './src/components/atoms'),
       },
       {
-        find: '@recoil',
-        replacement: path.resolve(__dirname, './src/recoil'),
-      },
-      {
         find: '@pages',
         replacement: path.resolve(__dirname, './src/components/pages'),
       },
       {
         find: '@constants',
         replacement: path.resolve(__dirname, './src/constants'),
+      },
+      {
+        find: '@recoil',
+        replacement: path.resolve(__dirname, './src/recoil'),
       },
     ],
   },

@@ -21,9 +21,9 @@
     "paths": {
       "@/*": ["./src"],
       "@components/*": ["./src/components/*"],
-      "@atoms/*": ["./src/components/atoms/*"],
       "@recoil/*": ["./src/recoil/*"],
-      "@constants/*": ["./src/constants/*"]
+      "@constants/*": ["./src/constants/*"],
+      "@pages/*": ["./src/components/pages/*"]
     }
   },
   "include": ["src"],

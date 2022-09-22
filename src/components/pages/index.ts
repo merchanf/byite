@@ -1,4 +1,4 @@
 import Settings from './Settings/Settings';
+import Launcher from './Launcher/Launcher';
 
-// eslint-disable-next-line import/prefer-default-export
-export { Settings };
+export { Settings, Launcher };

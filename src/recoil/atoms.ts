@@ -5,4 +5,11 @@ const textState = atom<number>({
   default: 0,
 });
 
-export default textState;
+const firebaseAtom = atom({
+  key: 'firebase',
+  default: {
+    loaded: false,
+  },
+});
+
+export { textState, firebaseAtom };
