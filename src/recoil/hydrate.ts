@@ -3,9 +3,9 @@ import { setRecoil } from 'recoil-nexus';
 import { uid } from 'uid';
 import { sessionStorage, localStorage } from '@constants/globals';
 import sessionService from '@services/session';
+import initGoogleMaps from '@services/googleMaps';
 import firebaseInstanceSelector from './firebase';
 import { geoLocationAtom } from './session';
-import { gMapsInstanceAtom, initGoogleMapsSelector } from './googleMaps';
 
 const hydrateSelector = selector({
   key: 'hydrate',
@@ -29,8 +29,7 @@ const hydrateSelector = selector({
         const session = await sessionService.get(sessionId);
         if (session) {
           const { location } = session;
-          const gMapsInstance = get(initGoogleMapsSelector);
-          setRecoil(gMapsInstanceAtom, gMapsInstance);
+          initGoogleMaps();
           setRecoil(geoLocationAtom, location);
         }
       } else {
