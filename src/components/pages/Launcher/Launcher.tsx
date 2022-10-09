@@ -1,12 +1,12 @@
 import { FC, useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Title } from '@components/atoms/index';
-import firebaseInstanceState from '@recoil/firebase';
+import hydrateSelector from '@recoil/hydrate';
 import styles from './Launcher.module.scss';
 
 const Launcher: FC = () => {
   const [text, setText] = useState('loading...');
-  const { loaded } = useRecoilValue(firebaseInstanceState);
+  const loaded = useRecoilValue(hydrateSelector);
 
   useEffect(() => {
     if (loaded) {

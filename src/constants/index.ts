@@ -1,4 +1,5 @@
 import colors from './colors';
 import routes from './routes';
+import { sessionStorage, localStorage } from './globals';
 
-export { colors, routes };
+export { colors, routes, sessionStorage, localStorage };

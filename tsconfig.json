@@ -23,7 +23,9 @@
       "@components/*": ["./src/components/*"],
       "@recoil/*": ["./src/recoil/*"],
       "@constants/*": ["./src/constants/*"],
-      "@pages/*": ["./src/components/pages/*"]
+      "@pages/*": ["./src/components/pages/*"],
+      "@services/*": ["./src/services/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": ["src"],

@@ -3,7 +3,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore';
 import { selector } from 'recoil';
 import env from '@constants/env';
-import { firebaseAtom } from '@recoil/atoms';
+import { firebaseLoadedAtom } from '@recoil/session';
 
 const {
   FIREBASE_API_KEY,
@@ -25,26 +25,18 @@ const config = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-const initializeFirebase = () => {
-  const app = initializeApp(config);
-  getAnalytics(app);
-  getFirestore(app);
-};
-
 // Initialize Firebase
 const firebaseInstanceSelector = selector({
   key: 'getFirebaseInstance',
   get: ({ get }) => {
-    const firebaseState = get(firebaseAtom);
-    if (!firebaseState.loaded) {
+    const hasFirebaseLoaded = get(firebaseLoadedAtom);
+    if (!hasFirebaseLoaded) {
       const app = initializeApp(config);
       getAnalytics(app);
       getFirestore(app);
-      return {
-        loaded: true,
-      };
+      return true;
     }
-    return firebaseState;
+    return firebaseLoadedAtom;
   },
 });
 

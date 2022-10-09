@@ -95,6 +95,14 @@ export default defineConfig({
         find: '@recoil',
         replacement: path.resolve(__dirname, './src/recoil'),
       },
+      {
+        find: '@services',
+        replacement: path.resolve(__dirname, './src/services'),
+      },
+      {
+        find: '@types',
+        replacement: path.resolve(__dirname, './src/types'),
+      },
     ],
   },
   css: {
