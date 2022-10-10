@@ -1,23 +1,30 @@
 import { FC, useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { Navigate } from 'react-router-dom';
 import { Title } from '@components/atoms/index';
-import hydrateSelector from '@recoil/hydrate';
+import hydrate from '@services/hydrate';
+import { routes } from '@constants/index';
 import styles from './Launcher.module.scss';
 
+const { SETTINGS } = routes;
+
 const Launcher: FC = () => {
-  const [text, setText] = useState('loading...');
-  const loaded = useRecoilValue(hydrateSelector);
+  const [isHydrating, setIsHydrating] = useState(true);
 
   useEffect(() => {
-    if (loaded) {
-      setText('loaded');
-    }
-  }, [loaded]);
+    const hydrateApp = async () => {
+      await hydrate();
+      setIsHydrating(false);
+    };
 
-  return (
+    hydrateApp();
+  }, [isHydrating]);
+
+  return isHydrating ? (
     <div className={styles.Launcher}>
-      <Title>{text}</Title>
+      <Title>...loading</Title>
     </div>
+  ) : (
+    <Navigate to={SETTINGS} />
   );
 };
 

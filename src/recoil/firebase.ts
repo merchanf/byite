@@ -1,7 +1,5 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-import { getFirestore } from 'firebase/firestore';
 import env from '@constants/env';
 
 const {
@@ -24,24 +22,9 @@ const config = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-const firebaseLoadedAtom = atom({
-  key: 'firebaseLoaded',
-  default: false,
+const firebaseAppAtom = atom({
+  key: 'firebaseApp',
+  default: initializeApp(config),
 });
 
-// Initialize Firebase
-const firebaseInstanceSelector = selector({
-  key: 'getFirebaseInstance',
-  get: ({ get }) => {
-    const hasFirebaseLoaded = get(firebaseLoadedAtom);
-    if (!hasFirebaseLoaded) {
-      const app = initializeApp(config);
-      getAnalytics(app);
-      getFirestore(app);
-      return true;
-    }
-    return firebaseLoadedAtom;
-  },
-});
-
-export default firebaseInstanceSelector;
+export default firebaseAppAtom;

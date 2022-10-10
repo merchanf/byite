@@ -40,10 +40,8 @@ export const create = async (userUid: string) => {
   return document.id;
 };
 
-const session = {
+export default {
   get,
   addUser,
   create,
 };
-
-export default session;

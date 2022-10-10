@@ -1,6 +1,6 @@
 const routes = {
   SWIPE: '/swipe',
-  SETTING_UP: '/setting-up',
+  SETTINGS: '/settings',
   INSTRUCTIONS: '/instructions',
   LAUNCHER: '/',
   PROFILE: '/profile',
