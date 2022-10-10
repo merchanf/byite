@@ -25,7 +25,8 @@
       "@constants/*": ["./src/constants/*"],
       "@pages/*": ["./src/components/pages/*"],
       "@services/*": ["./src/services/*"],
-      "@types/*": ["./src/types/*"]
+      "@types/*": ["./src/types/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "include": ["src"],
