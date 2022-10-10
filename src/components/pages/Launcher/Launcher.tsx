@@ -14,7 +14,7 @@ const Launcher: FC = () => {
   useEffect(() => {
     const hydrateApp = async () => {
       await hydrate();
-      // setIsHydrating(false);
+      setIsHydrating(false);
     };
 
     hydrateApp();
