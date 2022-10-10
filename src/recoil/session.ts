@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { IGeoLocation } from '../types/atoms';
+import { IGeoLocation, ISession } from '../types/session';
 
 const geoLocationAtom = atom<IGeoLocation>({
   key: 'geoLocation',
@@ -9,9 +9,9 @@ const geoLocationAtom = atom<IGeoLocation>({
   },
 });
 
-const firebaseLoadedAtom = atom({
-  key: 'firebaseLoaded',
-  default: false,
+const sessionAtom = atom<ISession | null>({
+  key: 'session',
+  default: null,
 });
 
-export { geoLocationAtom, firebaseLoadedAtom };
+export { geoLocationAtom, sessionAtom };
