@@ -5,12 +5,12 @@
 
 html,
 body,
-:global(#root) {
-  font-size: 1.6rem;
+:global(#root),
+:global(:root) {
   font-family: 'Montserrat', 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: $white;
+  background-color: $white-background;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -23,10 +23,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-:root {
-  font-size: 62.5%;
-  overflow-x: hidden;
-  position: relative;
 }

@@ -6,7 +6,7 @@ import { sessionStorage, localStorage } from '@constants/globals';
 import { firebaseAppAtom, geoLocationAtom, sessionAtom } from '@recoil/index';
 import sessionService from './session';
 import userService from './user';
-import initGoogleMaps from './googleMaps';
+import { initGoogleMaps } from './googleMaps';
 
 const initFirebase = async () => {
   const app = getRecoil(firebaseAppAtom);

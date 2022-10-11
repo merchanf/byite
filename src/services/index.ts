@@ -1,6 +1,14 @@
 import hydrate from './hydrate';
-import initGoogleMaps from './googleMaps';
+import { initGoogleMaps, getRestaurantDetails } from './googleMaps';
 import session from './session';
 import user from './user';
+import getGeoLocation from './geoLocation';
 
-export { initGoogleMaps, hydrate, session, user };
+export {
+  getGeoLocation,
+  getRestaurantDetails,
+  initGoogleMaps,
+  hydrate,
+  session,
+  user,
+};
