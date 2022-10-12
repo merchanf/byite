@@ -25,7 +25,7 @@
       "@constants/*": ["./src/constants/*"],
       "@pages/*": ["./src/components/pages/*"],
       "@services/*": ["./src/services/*"],
-      "@types/*": ["./src/types/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
       "@assets/*": ["./src/assets/*"]
     }
   },

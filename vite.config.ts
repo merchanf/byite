@@ -100,8 +100,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, './src/services'),
       },
       {
-        find: '@types',
-        replacement: path.resolve(__dirname, './src/types'),
+        find: '@interfaces',
+        replacement: path.resolve(__dirname, './src/interfaces'),
       },
       {
         find: '@assets',

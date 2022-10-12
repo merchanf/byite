@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import GPA from 'react-google-places-autocomplete';
 import { colors } from '@constants/index';
+import type IGooglePlacesAutocomplete from '@interfaces/googlePlacesAutocomplete';
 import { StylesConfig } from 'react-select';
 
 const { red, oldBurgundy } = colors;
@@ -45,11 +46,10 @@ const autocompleteStyles: StylesConfig<OptionType, boolean> = {
     paddingLeft: `12px`,
   }),
 };
-
 interface IProps {
   apiKey: string;
-  value: string;
-  onChange: (data: string) => void;
+  value?: string;
+  onChange: (value: IGooglePlacesAutocomplete) => void;
 }
 
 const GooglePlacesAutocomplete: FC<IProps> = ({ apiKey, value, onChange }) => {

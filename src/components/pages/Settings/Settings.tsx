@@ -10,14 +10,15 @@ import {
 import { geoLocationAtom } from '@recoil/index';
 import { Layout } from '@components/templates/index';
 import { env } from '@constants/index';
-import { getGeoLocation } from '@services/index';
+import { getGeoLocation, getRestaurantDetails } from '@services/index';
+import type IGooglePlacesAutocomplete from '@interfaces/googlePlacesAutocomplete';
 import styles from './Settings.module.scss';
 
 const { GOOGLE_API_KEY } = env;
 
 const Settings: FC = () => {
   const [geoLocation, setGeoLocation] = useRecoilState(geoLocationAtom);
-  const [value, setValue] = useState('');
+  const [zone, setZone] = useState<IGooglePlacesAutocomplete>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<GeolocationPositionError>();
 
@@ -35,15 +36,16 @@ const Settings: FC = () => {
   };
 
   useEffect(() => {
-    if (value) {
-      console.log({
-        geoLocation,
-        value,
-        loading,
-        error,
-      });
-    }
-  }, [value, geoLocation, loading, error]);
+    const fetchRestaurantDetails = async () => {
+      console.log(zone);
+      if (zone?.value?.place_id) {
+        const details = await getRestaurantDetails(zone.value.place_id);
+        console.log(details);
+      }
+    };
+
+    fetchRestaurantDetails();
+  }, [zone]);
 
   return (
     <Layout className={styles.Settings}>
@@ -58,8 +60,7 @@ const Settings: FC = () => {
         <div className={styles.Settings__GooglePlacesAutocomplete}>
           <GooglePlacesAutocomplete
             apiKey={GOOGLE_API_KEY}
-            value={value}
-            onChange={setValue}
+            onChange={setZone}
           />
         </div>
         {/* autoCompleteLoading && <CircularProgress /> */}
