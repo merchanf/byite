@@ -66,7 +66,9 @@ const restaurantAdapter = (
   pictures: getPictures(photos),
 });
 
-const getRestaurantDetails = async (placeId: string) => {
+const getRestaurantDetails = async (
+  placeId: string
+): Promise<google.maps.places.PlaceResult> => {
   return new Promise((resolve) => {
     const request: google.maps.places.PlaceDetailsRequest = {
       placeId,

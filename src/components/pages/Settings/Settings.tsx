@@ -6,6 +6,7 @@ import {
   Paragraph,
   GooglePlacesAutocomplete,
   TextButton,
+  CircularProgress,
 } from '@components/atoms/index';
 import { geoLocationAtom } from '@recoil/index';
 import { Layout } from '@components/templates/index';
@@ -19,33 +20,45 @@ const { GOOGLE_API_KEY } = env;
 const Settings: FC = () => {
   const [geoLocation, setGeoLocation] = useRecoilState(geoLocationAtom);
   const [zone, setZone] = useState<IGooglePlacesAutocomplete>();
-  const [loading, setLoading] = useState(false);
+  const [loadingGPA, setLoadingGPA] = useState(false);
+  const [loadingGeoLocation, setLoadingGeoLocation] = useState(false);
   const [error, setError] = useState<GeolocationPositionError>();
 
   const getCurrentLocation = async () => {
-    setLoading(true);
+    setLoadingGeoLocation(true);
     try {
       const {
         coords: { longitude, latitude },
       } = await getGeoLocation();
       setGeoLocation({ lat: latitude, lng: longitude });
-      setLoading(false);
     } catch (err) {
       setError(err as GeolocationPositionError);
+    } finally {
+      setLoadingGeoLocation(false);
     }
   };
 
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
-      console.log(zone);
+      setLoadingGPA(true);
       if (zone?.value?.place_id) {
-        const details = await getRestaurantDetails(zone.value.place_id);
-        console.log(details);
+        const {
+          // needed for a bug in the google places interface
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          location: { latitude: lat, longitude: lng },
+        } = await getRestaurantDetails(zone.value.place_id);
+        setGeoLocation({ lat, lng });
+        setLoadingGPA(false);
       }
     };
 
-    fetchRestaurantDetails();
+    if (zone) fetchRestaurantDetails();
   }, [zone]);
+
+  useEffect(() => {
+    if (geoLocation) console.log(geoLocation);
+  }, [geoLocation]);
 
   return (
     <Layout className={styles.Settings}>
@@ -63,25 +76,24 @@ const Settings: FC = () => {
             onChange={setZone}
           />
         </div>
-        {/* autoCompleteLoading && <CircularProgress /> */}
+        {loadingGPA && <CircularProgress />}
       </div>
       <Subtitle>Buscar restaurantes cerca a mi</Subtitle>
-      <div className={styles.Location__CurrentLocation}>
+      <div className={styles.Settings__GeoLocation}>
         <TextButton onClick={getCurrentLocation}>
           Usar mi ubicación actual
         </TextButton>
-        {/* (currentLocationLoading && geoLocationLoaded == null) ||
-          (geoLocationLoaded && <CircularProgress />)}
-        {geoLocationLoaded != null && !geoLocationLoaded && (
+        {loadingGeoLocation && <CircularProgress />}
+        {/* !loadingGeoLocation && error && (
           <ClearRoundedIcon className={styles.CrossIcon} />
         ) */}
       </div>
-      {/* geoLocationLoaded != null && !geoLocationLoaded && (
+      {!loadingGeoLocation && error && (
         <p>
           No podemos acceder a tu ubicación. Revisa los permisos de tu teléfono
           o usa otra de las opciones listadas
         </p>
-      ) */}
+      )}
     </Layout>
   );
 };
