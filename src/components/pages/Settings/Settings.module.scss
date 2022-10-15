@@ -1,6 +1,4 @@
 .Settings {
-  $p: &;
-
   &__Dropdown {
     display: flex;
     justify-content: center;
@@ -15,6 +13,18 @@
   &__GeoLocation {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
+  }
+
+  &__CrossIcon {
+    font-size: 1.5rem;
+    color: $oldBurgundy-500;
+  }
+
+  @include desktop {
+    &__CrossIcon {
+      font-size: 2rem;
+    }
   }
 }

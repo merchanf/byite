@@ -8,6 +8,7 @@ import {
   TextButton,
   CircularProgress,
 } from '@components/atoms/index';
+import { Close } from '@components/Icons/index';
 import { geoLocationAtom } from '@recoil/index';
 import { Layout } from '@components/templates/index';
 import { env } from '@constants/index';
@@ -80,20 +81,23 @@ const Settings: FC = () => {
       </div>
       <Subtitle>Buscar restaurantes cerca a mi</Subtitle>
       <div className={styles.Settings__GeoLocation}>
-        <TextButton onClick={getCurrentLocation}>
-          Usar mi ubicación actual
-        </TextButton>
-        {loadingGeoLocation && <CircularProgress />}
-        {/* !loadingGeoLocation && error && (
-          <ClearRoundedIcon className={styles.CrossIcon} />
-        ) */}
+        {error ? (
+          <>
+            <Close className={styles.Settings__CrossIcon} />
+            <p>
+              No podemos acceder a tu ubicación. Revisa los permisos de tu
+              teléfono o usa otra de las opciones listadas
+            </p>
+          </>
+        ) : (
+          <>
+            <TextButton onClick={getCurrentLocation}>
+              Usar mi ubicación actual
+            </TextButton>
+            {loadingGeoLocation && <CircularProgress />}
+          </>
+        )}
       </div>
-      {!loadingGeoLocation && error && (
-        <p>
-          No podemos acceder a tu ubicación. Revisa los permisos de tu teléfono
-          o usa otra de las opciones listadas
-        </p>
-      )}
     </Layout>
   );
 };
