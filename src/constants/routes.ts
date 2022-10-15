@@ -2,7 +2,7 @@ const routes = {
   SWIPE: '/swipe',
   SETTINGS: '/settings',
   INSTRUCTIONS: '/instructions',
-  LAUNCHER: '/',
+  BASE: '/',
   PROFILE: '/profile',
 };
 

@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import RecoilNexus from 'recoil-nexus';
-import { Settings, Launcher } from '@pages/index';
+import { Settings, Launcher, Swipe } from '@pages/index';
+import { routes } from '@constants/index';
+
+const { BASE, SETTINGS, SWIPE } = routes;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -12,8 +15,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <RecoilNexus />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Launcher />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path={BASE} element={<Launcher />} />
+          <Route path={SETTINGS} element={<Settings />} />
+          <Route path={SWIPE} element={<Swipe />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

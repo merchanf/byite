@@ -1,11 +1,9 @@
-interface IGeoLocation {
+export interface IGeoLocation {
   lat: number;
   lng: number;
 }
 
-interface ISession {
+export interface ISession {
   userUid: string;
   sessionId: string;
 }
-
-export { IGeoLocation, ISession };

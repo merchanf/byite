@@ -1,0 +1,16 @@
+.Error {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__Icon {
+    font-size: 1.5rem;
+    color: $oldBurgundy-500;
+  }
+
+  @include desktop {
+    &__Icon {
+      font-size: 2rem;
+    }
+  }
+}
