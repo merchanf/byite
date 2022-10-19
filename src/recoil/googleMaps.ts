@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 
-const gMapsInstanceAtom = atom({
+const gMapsInstanceAtom = atom<google.maps.Map | null>({
   key: 'gMapsInstance',
-  default: {},
+  default: null,
 });
 
 export default gMapsInstanceAtom;

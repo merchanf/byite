@@ -34,7 +34,6 @@ const setSessionId = async (userUid: string) => {
     const session = await sessionService.get(sessionId);
     if (session) {
       const { location } = session;
-      initGoogleMaps();
       setRecoil(geoLocationAtom, location);
     }
   } else {
@@ -45,6 +44,7 @@ const setSessionId = async (userUid: string) => {
 
 const hydrate = async () => {
   initFirebase();
+  initGoogleMaps();
   const userUid = setUserUid();
   const sessionId = await setSessionId(userUid);
 

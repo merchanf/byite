@@ -42,6 +42,7 @@
     "recoil": "^0.7.5",
     "recoil-nexus": "^0.4.0",
     "sass": "^1.54.0",
+    "swiper": "^8.4.4",
     "uid": "^2.0.1",
     "vite-plugin-esmodule": "^1.4.2"
   },
