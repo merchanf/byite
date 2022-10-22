@@ -1,5 +1,8 @@
 import { FC, useState, useEffect, useRef } from 'react';
+import cx from 'classnames';
 import { useRecoilValue } from 'recoil';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperClass from 'swiper';
 import { nearbySearch } from '@services/index';
 import {
   gMapsInstanceAtom,
@@ -8,6 +11,8 @@ import {
   openNowAtom,
 } from '@recoil/index';
 import type { IGeoLocation } from '@interfaces/index';
+import 'swiper/css';
+import styles from './Swipe.module.scss';
 
 const Swipe: FC = () => {
   const gMapsInstance = useRecoilValue(gMapsInstanceAtom);
@@ -55,28 +60,39 @@ const Swipe: FC = () => {
     }
   }, []);
 
-  const getNextPage = async () => {
-    if (nextPagination?.hasNextPage) {
-      nextPagination.nextPage();
+  const handleOnSlideChange = ({ activeIndex }: SwiperClass) => {
+    if (restaurants && activeIndex >= restaurants.length - 3) {
+      if (nextPagination?.hasNextPage) {
+        nextPagination.nextPage();
+      } else {
+        setRestaurants((prevRestaurants) => {
+          if (prevRestaurants) {
+            return [
+              ...prevRestaurants,
+              {
+                name: 'No more restaurants',
+              },
+            ];
+          }
+          return restaurants;
+        });
+      }
     }
   };
 
   return (
-    <section>
-      <h1>Swipe</h1>
-      <button type="button" onClick={getNextPage}>
-        Click me
-      </button>
-      {restaurants ? (
-        <ol>
-          {restaurants.map(({ name }) => (
-            <li key={name}>{name}</li>
-          ))}
-        </ol>
-      ) : (
-        <p>No restaurants</p>
-      )}
-    </section>
+    <Swiper
+      className={cx(styles.Swiper__Swiper, 'mySwiper swiper-h')}
+      spaceBetween={50}
+      onSlideChange={handleOnSlideChange}
+    >
+      {restaurants &&
+        restaurants.map(({ name }) => (
+          <SwiperSlide key={name}>
+            <div className={styles.Swiper__Slide}>{name}</div>
+          </SwiperSlide>
+        ))}
+    </Swiper>
   );
 };
 
