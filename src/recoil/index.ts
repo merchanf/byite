@@ -5,6 +5,7 @@ import {
   sessionAtom,
   radiusAtom,
   openNowAtom,
+  countryAtom,
 } from './session';
 
 export {
@@ -14,4 +15,5 @@ export {
   sessionAtom,
   radiusAtom,
   openNowAtom,
+  countryAtom,
 };

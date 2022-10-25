@@ -21,4 +21,9 @@ const openNowAtom = atom<boolean>({
   default: true,
 });
 
-export { geoLocationAtom, sessionAtom, radiusAtom, openNowAtom };
+const countryAtom = atom<string>({
+  key: 'country',
+  default: 'CO',
+});
+
+export { countryAtom, geoLocationAtom, sessionAtom, radiusAtom, openNowAtom };

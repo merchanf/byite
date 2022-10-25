@@ -14,13 +14,13 @@ type OptionType = {
 const autocompleteStyles: StylesConfig<OptionType, boolean> = {
   control: (provided) => ({
     ...provided,
-    border: `1px solid ${red[500]}`,
+    border: `1px solid ${red[100]}`,
     borderRadius: '19px',
     '&:hover': {
-      borderColor: red[600],
+      borderColor: red[200],
     },
     '&:active': {
-      borderColor: red[700],
+      borderColor: red[300],
     },
   }),
   input: (provided) => ({
@@ -37,7 +37,7 @@ const autocompleteStyles: StylesConfig<OptionType, boolean> = {
     ...provided,
     color: oldBurgundy[500],
     '&:hover': {
-      backgroundColor: red[200],
+      backgroundColor: red[50],
     },
   }),
   singleValue: (provided) => ({
@@ -50,16 +50,22 @@ interface IProps {
   apiKey: string;
   value?: string;
   onChange: (value: IGooglePlacesAutocomplete) => void;
+  country: string;
 }
 
-const GooglePlacesAutocomplete: FC<IProps> = ({ apiKey, value, onChange }) => {
+const GooglePlacesAutocomplete: FC<IProps> = ({
+  apiKey,
+  value,
+  onChange,
+  country,
+}) => {
   return (
     <GPA
       apiKey={apiKey}
       apiOptions={{ language: 'es', region: 'co' }}
       autocompletionRequest={{
         componentRestrictions: {
-          country: ['co'],
+          country: [country],
         },
       }}
       minLengthAutocomplete={3}

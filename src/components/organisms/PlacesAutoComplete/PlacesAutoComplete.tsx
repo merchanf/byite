@@ -13,11 +13,15 @@ import styles from './PlacesAutoComplete.module.scss';
 
 interface IPlacesAutoComplete {
   setGeoLocation: (geoLocation: IGeoLocation) => void;
+  country: string;
 }
 
 const { GOOGLE_API_KEY } = env;
 
-const PlacesAutoComplete: FC<IPlacesAutoComplete> = ({ setGeoLocation }) => {
+const PlacesAutoComplete: FC<IPlacesAutoComplete> = ({
+  setGeoLocation,
+  country,
+}) => {
   const [zone, setZone] = useState<IGooglePlacesAutocomplete>();
   const [loading, setLoading] = useState(false);
 
@@ -41,7 +45,11 @@ const PlacesAutoComplete: FC<IPlacesAutoComplete> = ({ setGeoLocation }) => {
   return (
     <div className={styles.PlacesAutoComplete}>
       <div className={styles.PlacesAutoComplete__GooglePlacesAutocomplete}>
-        <GooglePlacesAutocomplete apiKey={GOOGLE_API_KEY} onChange={setZone} />
+        <GooglePlacesAutocomplete
+          apiKey={GOOGLE_API_KEY}
+          onChange={setZone}
+          country={country}
+        />
       </div>
       {loading && <CircularProgress />}
     </div>

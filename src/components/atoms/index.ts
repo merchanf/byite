@@ -5,8 +5,10 @@ import GooglePlacesAutocomplete from './GooglePlacesAutocomplete/GooglePlacesAut
 import Title from './Title/Title';
 import Paragraph from './Paragraph/Paragraph';
 import Subtitle from './Subtitle/Subtitle';
+import CountriesDropdown from './CountriesDropdown/CountriesDropdown';
 
 export {
+  CountriesDropdown,
   LoadingIcon,
   TextButton,
   CircularProgress,
