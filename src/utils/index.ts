@@ -1,4 +1,4 @@
 import distance from './distance';
+import getCountry from './getCountry';
 
-// eslint-disable-next-line import/prefer-default-export
-export { distance };
+export { distance, getCountry };

@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { getCountry } from '@utils/index';
 import { IGeoLocation, ISession } from '../interfaces/session';
 
 const geoLocationAtom = atom<IGeoLocation | null>({
@@ -23,7 +24,7 @@ const openNowAtom = atom<boolean>({
 
 const countryAtom = atom<string>({
   key: 'country',
-  default: 'CO',
+  default: getCountry(),
 });
 
 export { countryAtom, geoLocationAtom, sessionAtom, radiusAtom, openNowAtom };
