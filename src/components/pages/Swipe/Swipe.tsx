@@ -10,6 +10,7 @@ import {
   radiusAtom,
   openNowAtom,
 } from '@recoil/index';
+import { Layout } from '@components/templates';
 import type { IGeoLocation } from '@interfaces/index';
 import 'swiper/css';
 import styles from './Swipe.module.scss';
@@ -87,9 +88,12 @@ const Swipe: FC = () => {
       onSlideChange={handleOnSlideChange}
     >
       {restaurants &&
-        restaurants.map(({ name }) => (
-          <SwiperSlide key={name}>
-            <div className={styles.Swiper__Slide}>{name}</div>
+        restaurants.map((restaurant) => (
+          <SwiperSlide key={restaurant.name}>
+            <Layout>
+              <h2 className={styles.Swiper__Slide}>{restaurant.name}</h2>
+              <pre>{JSON.stringify(restaurant, null, 2)}</pre>
+            </Layout>
           </SwiperSlide>
         ))}
     </Swiper>
