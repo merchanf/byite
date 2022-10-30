@@ -24,10 +24,6 @@ const Settings: FC = () => {
     if (geoLocation) navigate(SWIPE);
   }, [geoLocation]);
 
-  useEffect(() => {
-    if (country) console.log(country);
-  }, [country]);
-
   return (
     <Layout className={styles.Settings}>
       <CountriesDropdown

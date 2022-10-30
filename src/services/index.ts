@@ -4,6 +4,7 @@ import {
   getRestaurantDetails,
   nearbySearch,
 } from './googleMaps';
+import type { IRestaurantDetails } from './googleMaps';
 import session from './session';
 import user from './user';
 import getGeoLocation from './geoLocation';
@@ -17,3 +18,5 @@ export {
   session,
   user,
 };
+
+export type { IRestaurantDetails };

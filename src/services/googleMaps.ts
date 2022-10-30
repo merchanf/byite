@@ -18,25 +18,19 @@ const fields = [
   'photos',
 ];
 
-const isNotARestaurant = (types: string[] | undefined) =>
+const checkIfIsNotARestaurant = (types: string[] | undefined) =>
   types?.includes('lodging') || types?.includes('spa');
-const excludeNotRestaurantsFromResults = (
-  results: google.maps.places.PlaceResult[] | null
-) => results?.filter(({ types }) => !isNotARestaurant(types)) || null;
-const excludeResultsWithNullPhotos = (
-  results: google.maps.places.PlaceResult[] | null
-) => results && results.filter(({ photos }) => photos);
-const excludeRestaurantsWithLowerRating = (
-  results: google.maps.places.PlaceResult[] | null | undefined
-) =>
-  results?.filter(
-    ({ rating, user_ratings_total }) =>
-      rating && rating >= 4 && user_ratings_total && user_ratings_total > 50
+
+const filterResults = (results: google.maps.places.PlaceResult[]) => {
+  return (
+    results
+      ?.filter(({ types }) => !checkIfIsNotARestaurant(types))
+      .filter(({ photos }) => Boolean(photos))
+      .filter(
+        ({ rating, user_ratings_total }) =>
+          rating && rating >= 4 && user_ratings_total && user_ratings_total > 50
+      ) ?? []
   );
-const filterResults = (results: google.maps.places.PlaceResult[] | null) => {
-  let filteredResults = excludeResultsWithNullPhotos(results);
-  filteredResults = excludeNotRestaurantsFromResults(filteredResults);
-  return excludeRestaurantsWithLowerRating(filteredResults);
 };
 
 const initGoogleMaps = () => {
@@ -62,19 +56,26 @@ const getPictures = (photos: google.maps.places.PlacePhoto[] | undefined) => {
   return pictures;
 };
 
-const restaurantAdapter = (
-  placeId: string,
-  {
-    vicinity,
-    geometry,
-    name,
-    rating,
-    international_phone_number,
-    price_level,
-    photos,
-  }: google.maps.places.PlaceResult
-) => ({
-  placeId,
+interface IRestaurantDetails {
+  placeId: string | undefined;
+  address: string | undefined;
+  location: { latitude: number | undefined; longitude: number | undefined };
+  name: string | undefined;
+  rating: number | undefined;
+  phoneNumber: string | undefined;
+  pictures: string[] | null;
+}
+
+const dataMapper = ({
+  place_id,
+  vicinity,
+  geometry,
+  name,
+  rating,
+  international_phone_number,
+  photos,
+}: google.maps.places.PlaceResult) => ({
+  placeId: place_id,
   address: vicinity,
   location: {
     latitude: geometry?.location?.lat(),
@@ -83,38 +84,36 @@ const restaurantAdapter = (
   name,
   rating,
   phoneNumber: international_phone_number,
-  pricing: price_level,
   pictures: getPictures(photos),
 });
 
 const getRestaurantDetails = async (
-  placeId: string
-): Promise<google.maps.places.PlaceResult> => {
-  return new Promise((resolve) => {
-    const request: google.maps.places.PlaceDetailsRequest = {
-      placeId,
-      fields,
-    };
-    const service = new google.maps.places.PlacesService(
-      document.getElementById('map') as HTMLDivElement
-    );
-    service.getDetails(request, (details) => {
-      if (details) resolve(restaurantAdapter(placeId, details));
-    });
+  placeId: string | undefined,
+  googleMapsInstance: google.maps.Map,
+  callback: (result: IRestaurantDetails) => void
+) => {
+  if (!placeId) return;
+  const request: google.maps.places.PlaceDetailsRequest = {
+    placeId,
+    fields,
+  };
+  const service = new google.maps.places.PlacesService(googleMapsInstance);
+  service.getDetails(request, (details) => {
+    if (details) callback(dataMapper(details));
   });
 };
 
 const nearbySearch = (
-  client: google.maps.Map,
+  gMapsInstance: google.maps.Map,
   location: google.maps.LatLng,
   radius: number,
   openNow: boolean,
-  resultsCallback: (results: google.maps.places.PlaceResult[] | null) => void,
+  resultsCallback: (result: IRestaurantDetails) => void,
   paginationCallback: (
     pagination: google.maps.places.PlaceSearchPagination | null
   ) => void
 ) => {
-  const service = new google.maps.places.PlacesService(client);
+  const service = new google.maps.places.PlacesService(gMapsInstance);
   const request: google.maps.places.PlaceSearchRequest = {
     location,
     radius,
@@ -128,12 +127,16 @@ const nearbySearch = (
       status: google.maps.places.PlacesServiceStatus,
       pagination: google.maps.places.PlaceSearchPagination | null
     ) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        resultsCallback(results);
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+        const filteredResults = filterResults(results);
+        filteredResults.forEach(({ place_id }) =>
+          getRestaurantDetails(place_id, gMapsInstance, resultsCallback)
+        );
         paginationCallback(pagination);
       }
     }
   );
 };
 
-export { initGoogleMaps, getRestaurantDetails, nearbySearch };
+export { initGoogleMaps, nearbySearch, getRestaurantDetails };
+export type { IRestaurantDetails };

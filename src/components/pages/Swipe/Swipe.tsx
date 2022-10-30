@@ -4,37 +4,35 @@ import { useRecoilValue } from 'recoil';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperClass from 'swiper';
 import { nearbySearch } from '@services/index';
+import type { IRestaurantDetails } from '@services/index';
 import {
   gMapsInstanceAtom,
   geoLocationAtom,
   radiusAtom,
   openNowAtom,
 } from '@recoil/index';
+import { RestaurantInfo } from '@components/organisms';
 import { Layout } from '@components/templates';
 import type { IGeoLocation } from '@interfaces/index';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import styles from './Swipe.module.scss';
 
 const Swipe: FC = () => {
   const gMapsInstance = useRecoilValue(gMapsInstanceAtom);
   const geoLocation = useRecoilValue<IGeoLocation | null>(geoLocationAtom);
-  const [restaurants, setRestaurants] =
-    useState<google.maps.places.PlaceResult[]>();
+  const [restaurants, setRestaurants] = useState<IRestaurantDetails[]>();
   const radius = useRecoilValue<number>(radiusAtom);
   const openNow = useRecoilValue<boolean>(openNowAtom);
   const [nextPagination, setNextPagination] =
     useState<google.maps.places.PlaceSearchPagination | null>();
   const firstRender = useRef(true);
 
-  const handleRestaurants = (
-    results: google.maps.places.PlaceResult[] | null
-  ) => {
-    if (results) {
-      setRestaurants((prevResults) => {
-        if (prevResults) return [...prevResults, ...results];
-        return results;
-      });
-    }
+  const handleRestaurants = (result: IRestaurantDetails) => {
+    setRestaurants((prevResults) => {
+      if (prevResults) return [...prevResults, result];
+      return [result];
+    });
   };
 
   useEffect(() => {
@@ -66,17 +64,7 @@ const Swipe: FC = () => {
       if (nextPagination?.hasNextPage) {
         nextPagination.nextPage();
       } else {
-        setRestaurants((prevRestaurants) => {
-          if (prevRestaurants) {
-            return [
-              ...prevRestaurants,
-              {
-                name: 'No more restaurants',
-              },
-            ];
-          }
-          return restaurants;
-        });
+        // TODO: Show a message that there are no more restaurants
       }
     }
   };
@@ -91,8 +79,7 @@ const Swipe: FC = () => {
         restaurants.map((restaurant) => (
           <SwiperSlide key={restaurant.name}>
             <Layout>
-              <h2 className={styles.Swiper__Slide}>{restaurant.name}</h2>
-              <pre>{JSON.stringify(restaurant, null, 2)}</pre>
+              <RestaurantInfo restaurant={restaurant} />
             </Layout>
           </SwiperSlide>
         ))}

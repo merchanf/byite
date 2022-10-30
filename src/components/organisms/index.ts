@@ -1,5 +1,5 @@
 import CurrentLocation from './CurrentLocation/CurrentLocation';
 import PlacesAutoComplete from './PlacesAutoComplete/PlacesAutoComplete';
+import RestaurantInfo from './RestaurantInfo/RestaurantInfo';
 
-// eslint-disable-next-line import/prefer-default-export
-export { CurrentLocation, PlacesAutoComplete };
+export { CurrentLocation, PlacesAutoComplete, RestaurantInfo };
