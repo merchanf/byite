@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cx from 'classnames';
-import { Close } from '@components/Icons/index';
+import { Close } from '@icons/index';
 import styles from './Error.module.scss';
 
 interface IError {

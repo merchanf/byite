@@ -80,8 +80,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, './src/components'),
       },
       {
-        find: '@atoms',
-        replacement: path.resolve(__dirname, './src/components/atoms'),
+        find: '@icons',
+        replacement: path.resolve(__dirname, './src/components/icons'),
       },
       {
         find: '@pages',

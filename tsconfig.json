@@ -27,7 +27,9 @@
       "@services/*": ["./src/services/*"],
       "@interfaces/*": ["./src/interfaces/*"],
       "@assets/*": ["./src/assets/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@icons/*": ["./src/components/icons/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   },
   "include": ["src"],

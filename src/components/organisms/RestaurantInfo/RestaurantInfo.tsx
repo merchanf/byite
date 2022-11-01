@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import type { IRestaurantDetails } from '@services/index';
+import { Gallery } from '@components/molecules';
 import styles from './RestaurantInfo.module.scss';
 
 interface IRestaurantInfoProps {
@@ -14,13 +15,16 @@ const RestaurantInfo: FC<IRestaurantInfoProps> = ({ restaurant }) => {
     <Swiper
       className={styles.Swiper}
       direction="vertical"
-      spaceBetween={50}
       pagination={{
         clickable: true,
       }}
       modules={[Pagination]}
     >
-      <SwiperSlide>{name}</SwiperSlide>
+      {pictures && name && (
+        <SwiperSlide>
+          <Gallery images={pictures} name={name} />
+        </SwiperSlide>
+      )}
       <SwiperSlide>
         <pre>{JSON.stringify(pictures, null, 2)}</pre>
       </SwiperSlide>
