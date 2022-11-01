@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 import cx from 'classnames';
 import { uid } from 'uid';
-import { ArrowRight, ArrowLeft } from '@icons/index';
 import styles from './Gallery.module.scss';
+import './Gallery.css';
 
 interface IGalleryProps {
   name: string;
