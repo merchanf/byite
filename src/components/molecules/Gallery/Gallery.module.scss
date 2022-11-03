@@ -2,17 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0;
+  margin: 1rem 0;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 2rem);
+  border-radius: 25px;
+  padding: 25px;
 
   &__Img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 25px;
   }
 
   &__Name {
@@ -39,6 +40,9 @@
   }
 
   @include desktop {
+    margin: 2rem 0;
+    height: calc(100% - 4rem);
+
     &__Button {
       font-size: 2rem;
     }

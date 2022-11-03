@@ -16,25 +16,23 @@ interface IGalleryProps {
 
 const Gallery: FC<IGalleryProps> = ({ images, name }) => {
   return (
-    <div className={styles.Gallery}>
-      <Swiper
-        className={styles.Gallery__Swiper}
-        pagination={{
-          clickable: true,
-        }}
-        navigation
-        modules={[Pagination, Navigation]}
-      >
-        {images.map((image) => (
-          <SwiperSlide key={uid()}>
-            <img className={styles.Gallery__Img} src={image} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <Swiper
+      className={styles.Gallery}
+      pagination={{
+        clickable: true,
+      }}
+      navigation
+      modules={[Pagination, Navigation]}
+    >
+      {images.map((image) => (
+        <SwiperSlide key={uid()}>
+          <img className={styles.Gallery__Img} src={image} />
+        </SwiperSlide>
+      ))}
       <p className={styles.Gallery__Name}>
         <b>{name}</b>
       </p>
-    </div>
+    </Swiper>
   );
 };
 
