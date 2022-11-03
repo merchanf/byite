@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import toast from 'react-hot-toast';
 import type { IRestaurantDetails } from '@services/index';
 import { TextButton, Subtitle, Paragraph } from '@components/atoms';
-import { Heart, Phone, Directions, Share } from '@icons/index';
+import { Heart, Phone, Directions, Copy, Whatsapp } from '@icons/index';
 import { distance, isIos, isMobilePhone } from '@utils/index';
+import { location } from '@constants/globals';
 import type { IGeoLocation } from '@interfaces/index';
 import styles from './RestaurantDetails.module.scss';
 
@@ -17,10 +19,13 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
 }) => {
   const {
     name,
-    pictures,
+    placeId,
     phoneNumber,
     location: { latitude, longitude },
   } = restaurant;
+
+  const { protocol, host } = location;
+  const url = `${protocol}//${host}/?restaurant=${placeId}`;
 
   const callRestaurant = () => {
     window.open(`tel:${phoneNumber}`);
@@ -34,6 +39,22 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
     } else {
       window.open(`geo:0,0?q=${latitude},${longitude}`);
     }
+  };
+
+  const shareRestaurant = () => {
+    const text = encodeURIComponent(
+      `¿Enserio nos vamos a perder de esta delicia? ${url}`
+    );
+    location.href = `whatsapp://send/?text=${text}`;
+  };
+
+  const addToFavorites = () => {
+    toast('Agregado a favoritos');
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(url);
+    toast('Enlace copiado al portapapeles');
   };
 
   return (
@@ -58,8 +79,15 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
       <TextButton Icon={Directions} onClick={getDirections}>
         Ver en Google Maps
       </TextButton>
-      <TextButton Icon={Heart}>Agregar a favoritos</TextButton>
-      <TextButton Icon={Share}>Compartir</TextButton>
+      <TextButton Icon={Heart} onClick={addToFavorites}>
+        Agregar a favoritos
+      </TextButton>
+      <TextButton onClick={shareRestaurant} Icon={Whatsapp}>
+        Compartir en WhatsApp
+      </TextButton>
+      <TextButton onClick={copyToClipboard} Icon={Copy}>
+        Copiar al portapapeles
+      </TextButton>
     </div>
   );
 };

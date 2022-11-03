@@ -1,3 +1,3 @@
-const { sessionStorage, localStorage } = window;
+const { sessionStorage, localStorage, location } = window;
 
-export { sessionStorage, localStorage };
+export { sessionStorage, localStorage, location };

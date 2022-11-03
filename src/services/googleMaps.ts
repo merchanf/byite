@@ -3,7 +3,6 @@
 import gMapsInstanceAtom from '@recoil/googleMaps';
 import { Loader } from '@googlemaps/js-api-loader';
 import { env } from '@constants/index';
-import { distance } from '@utils/index';
 import { setRecoil } from 'recoil-nexus';
 
 const { GOOGLE_API_KEY } = env;

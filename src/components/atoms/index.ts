@@ -6,6 +6,7 @@ import Title from './Title/Title';
 import Paragraph from './Paragraph/Paragraph';
 import Subtitle from './Subtitle/Subtitle';
 import CountriesDropdown from './CountriesDropdown/CountriesDropdown';
+import Modal from './Modal/Modal';
 
 export {
   CountriesDropdown,
@@ -16,4 +17,5 @@ export {
   Title,
   Paragraph,
   Subtitle,
+  Modal,
 };

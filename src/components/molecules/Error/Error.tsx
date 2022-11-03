@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cx from 'classnames';
-import { Close } from '@icons/index';
+import { Error as ErrorIcon } from '@icons/index';
 import styles from './Error.module.scss';
 
 interface IError {
@@ -11,7 +11,7 @@ interface IError {
 const Error: FC<IError> = ({ children, className }) => {
   return (
     <div className={cx(styles.Error, className)}>
-      <Close className={styles.Error__Icon} />
+      <ErrorIcon className={styles.Error__Icon} />
       <p>{children}</p>
     </div>
   );

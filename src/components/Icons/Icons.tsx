@@ -7,14 +7,17 @@ import {
   faPhone,
   faRoute,
   faShare,
+  faXmark,
+  faCopy,
 } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import FaIcon from './BaseFontAwesomeIcon';
 
 export interface IIconProps {
   className?: string;
 }
 
-const Close: FC<IIconProps> = ({ className }) => (
+const Error: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faCircleXmark} />
 );
 
@@ -42,4 +45,27 @@ const Share: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faShare} />
 );
 
-export { Close, Heart, ArrowRight, ArrowLeft, Phone, Directions, Share };
+const Close: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faXmark} />
+);
+
+const Whatsapp: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faWhatsapp} />
+);
+
+const Copy: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faCopy} />
+);
+
+export {
+  Close,
+  Copy,
+  Heart,
+  ArrowRight,
+  ArrowLeft,
+  Phone,
+  Directions,
+  Share,
+  Error,
+  Whatsapp,
+};
