@@ -8,47 +8,11 @@
   height: 100%;
 
   &__Img {
-    display: none;
-  }
-
-  &__Frame {
-    border-radius: 25px;
     width: 100%;
     height: 100%;
-  }
-
-  /* image with rounded corners */
-  &__ShowPicture {
-    display: block;
     object-fit: cover;
-    height: 100%;
-    width: 100%;
     object-position: center;
     border-radius: 25px;
-  }
-
-  &__Button {
-    all: unset;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100%;
-    width: 50%;
-    z-index: 1;
-    color: $oldBurgundy-500;
-    font-size: 1.5rem;
-  }
-
-  &__Button__Previous {
-    left: 0;
-  }
-
-  &__Button__Next {
-    right: 0;
-  }
-
-  &__Button__Disabled {
-    display: none;
   }
 
   &__Name {
