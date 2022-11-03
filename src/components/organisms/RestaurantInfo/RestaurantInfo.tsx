@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { IRestaurantDetails } from '@services/index';
-import { Gallery } from '@components/molecules';
+import { Gallery, RestaurantDetails } from '@components/molecules';
 import styles from './RestaurantInfo.module.scss';
 
 interface IRestaurantInfoProps {
@@ -9,7 +9,7 @@ interface IRestaurantInfoProps {
 }
 
 const RestaurantInfo: FC<IRestaurantInfoProps> = ({ restaurant }) => {
-  const { name, pictures, rating } = restaurant;
+  const { name, pictures, phoneNumber, address } = restaurant;
   return (
     <Swiper className={styles.Swiper} direction="vertical">
       {pictures && name && (
@@ -18,9 +18,8 @@ const RestaurantInfo: FC<IRestaurantInfoProps> = ({ restaurant }) => {
         </SwiperSlide>
       )}
       <SwiperSlide>
-        <pre>{JSON.stringify(pictures, null, 2)}</pre>
+        <RestaurantDetails restaurant={restaurant} />
       </SwiperSlide>
-      <SwiperSlide>{rating}</SwiperSlide>
     </Swiper>
   );
 };

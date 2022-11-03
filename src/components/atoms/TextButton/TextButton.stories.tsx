@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { Heart } from '@icons/index';
 import TextButton from './TextButton';
 
 export default {
@@ -16,6 +17,12 @@ export const Default = () => (
 
 export const Disabled = () => (
   <TextButton onClick={onClick} disabled>
+    Click me!
+  </TextButton>
+);
+
+export const withIcon = () => (
+  <TextButton onClick={onClick} Icon={Heart}>
     Click me!
   </TextButton>
 );

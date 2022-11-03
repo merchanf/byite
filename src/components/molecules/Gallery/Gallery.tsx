@@ -1,7 +1,6 @@
 // Disabling this rule because google maps do not provide alt text for their images
 /* eslint-disable jsx-a11y/alt-text */
-import { FC, useState } from 'react';
-import cx from 'classnames';
+import { FC } from 'react';
 import { uid } from 'uid';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
@@ -19,12 +18,12 @@ const Gallery: FC<IGalleryProps> = ({ images, name }) => {
   return (
     <div className={styles.Gallery}>
       <Swiper
+        className={styles.Gallery__Swiper}
         pagination={{
           clickable: true,
         }}
         navigation
         modules={[Pagination, Navigation]}
-        className="mySwiper"
       >
         {images.map((image) => (
           <SwiperSlide key={uid()}>

@@ -28,9 +28,18 @@
     cursor: not-allowed;
   }
 
+  &__Icon {
+    color: $white;
+    margin-right: 8px;
+  }
+
   @include desktop {
     height: 28px;
     padding: 8px 24px;
     font-size: 1rem;
+
+    &__Icon {
+      font-size: 1.5rem;
+    }
   }
 }
