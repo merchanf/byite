@@ -1,0 +1,15 @@
+.FormText {
+  display: flex;
+  flex-direction: column;
+
+  &__Label {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-left: 24px;
+  }
+
+  &:focus-within {
+    color: $red-700;
+  }
+}

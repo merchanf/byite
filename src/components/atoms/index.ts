@@ -7,15 +7,19 @@ import Paragraph from './Paragraph/Paragraph';
 import Subtitle from './Subtitle/Subtitle';
 import CountriesDropdown from './CountriesDropdown/CountriesDropdown';
 import Modal from './Modal/Modal';
+import InputText from './InputText/InputText';
+import Label from './Label/Label';
 
 export {
-  CountriesDropdown,
-  LoadingIcon,
-  TextButton,
   CircularProgress,
+  CountriesDropdown,
   GooglePlacesAutocomplete,
+  InputText,
+  Label,
+  LoadingIcon,
   Title,
+  Modal,
   Paragraph,
   Subtitle,
-  Modal,
+  TextButton,
 };

@@ -1,0 +1,21 @@
+.InputText {
+  width: 100%;
+  height: 32px;
+  border: 1px solid $red-200;
+  border-radius: 32px;
+  padding: 0 24px;
+  font-size: 14px;
+  color: $black;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $red-600;
+    border-width: 2px;
+  }
+
+  @include desktop {
+    height: 40px;
+    font-size: 16px;
+  }
+}

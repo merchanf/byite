@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import type IGooglePlacesAutocomplete from '@interfaces/googlePlacesAutocomplete';
 import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
 
 export default {
@@ -6,10 +7,15 @@ export default {
   title: 'atoms/GooglePlacesAutocomplete',
 };
 
-const onChange = (data: string) => {
+const onChange = (data: IGooglePlacesAutocomplete) => {
   console.log(`data`, data);
 };
 
 export const Default = () => (
-  <GooglePlacesAutocomplete onChange={onChange} value="" apiKey="ApiKey" />
+  <GooglePlacesAutocomplete
+    onChange={onChange}
+    value=""
+    apiKey="ApiKey"
+    country="CO"
+  />
 );
