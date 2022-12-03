@@ -1,9 +1,9 @@
 import { withSession } from '@components/HOCs/index';
-import SettingsView from './Settings/Settings';
+import SelectLocationView from './SelectLocation/SelectLocation';
 import Launcher from './Launcher/Launcher';
 import SwipeView from './Swipe/Swipe';
 
-const Settings = withSession(SettingsView);
+const SelectLocation = withSession(SelectLocationView);
 const Swipe = withSession(SwipeView);
 
-export { Settings, Launcher, Swipe };
+export { SelectLocation, Launcher, Swipe };

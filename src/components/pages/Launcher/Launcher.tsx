@@ -6,7 +6,7 @@ import { routes } from '@constants/index';
 import Logo from '@assets/logo.webp';
 import styles from './Launcher.module.scss';
 
-const { SETTINGS } = routes;
+const { SELECT_LOCATION } = routes;
 
 const Launcher: FC = () => {
   const [isHydrating, setIsHydrating] = useState(true);
@@ -26,7 +26,7 @@ const Launcher: FC = () => {
       <Title className={styles.Launcher__Title}>Byite</Title>
     </div>
   ) : (
-    <Navigate to={SETTINGS} />
+    <Navigate to={SELECT_LOCATION} />
   );
 };
 
