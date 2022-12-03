@@ -5,6 +5,7 @@ import styles from './InputText.module.scss';
 interface InputTextProps {
   id?: string;
   className?: string;
+  name?: string;
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,6 +14,7 @@ interface InputTextProps {
 const InputText: FC<InputTextProps> = ({
   className,
   id,
+  name,
   placeholder,
   value,
   onChange,
@@ -24,6 +26,7 @@ const InputText: FC<InputTextProps> = ({
       type="text"
       placeholder={placeholder}
       value={value}
+      name={name}
       onChange={onChange}
     />
   );

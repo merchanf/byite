@@ -1,0 +1,8 @@
+.Label {
+  font-size: 1rem;
+  font-weight: 600;
+
+  @include desktop {
+    font-size: 1.25rem;
+  }
+}

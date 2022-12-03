@@ -5,18 +5,34 @@ import styles from './FormText.module.scss';
 
 interface FormTextProps {
   className?: string;
+  label: string;
+  name?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormText: FC<FormTextProps> = ({ className }) => {
+const FormText: FC<FormTextProps> = ({
+  className,
+  label,
+  placeholder,
+  onChange,
+  name,
+  value,
+}) => {
+  const elementId = `form-text-${label}`;
   return (
     <span className={cx(className, styles.FormText)}>
-      <Label className={styles.FormText__Label} htmlFor="name">
-        Name
+      <Label className={styles.FormText__Label} htmlFor={elementId}>
+        {label}
       </Label>
       <InputText
         className={styles.FormText__Input}
-        id="name"
-        placeholder="Name"
+        id={elementId}
+        placeholder={placeholder}
+        onChange={onChange}
+        name={name}
+        value={value}
       />
     </span>
   );
