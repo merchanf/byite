@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { CountriesDropdown } from '@components/atoms/index';
-import { SelectLocation } from '@components/being/index';
+import { SelectLocation } from '@components/beings/index';
 import { geoLocationAtom, countryAtom } from '@recoil/index';
 import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
