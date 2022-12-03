@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-import FormName from './FormText';
+import FormText from './FormText';
 
 export default {
-  component: FormName,
+  component: FormText,
   title: 'molecules/Form text',
 };
 
 export const Default = () => (
-  <FormName
+  <FormText
     label="Cómo te llamas?"
     placeholder="Radamel Falcao Garcia"
     name="name"
@@ -15,7 +15,7 @@ export const Default = () => (
 );
 
 export const WithName = () => (
-  <FormName
+  <FormText
     label="Cómo te llamas?"
     placeholder="Radamel Falcao Garcia"
     name="name"
@@ -23,19 +23,28 @@ export const WithName = () => (
 );
 
 export const WithValue = () => (
-  <FormName
+  <FormText
     label="Cómo te llamas?"
     placeholder="Radamel Falcao Garcia"
     name="name"
-    value="Radamel Falcao Garcia"
+    value="Faustino Asprilla"
   />
 );
 
 export const WithOnChange = () => (
-  <FormName
+  <FormText
     label="Cómo te llamas?"
     placeholder="Radamel Falcao Garcia"
     name="name"
     onChange={(e) => console.log(e.target.value)}
+  />
+);
+
+export const WithRequired = () => (
+  <FormText
+    label="Cómo te llamas?"
+    placeholder="Radamel Falcao Garcia"
+    name="name"
+    required
   />
 );
