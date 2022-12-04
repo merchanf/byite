@@ -8,6 +8,7 @@ interface InputTextProps {
   className?: string;
   name?: string;
   placeholder?: string;
+  type?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onError?: (error: ValidationTypes) => void;
@@ -20,16 +21,25 @@ const InputText: FC<InputTextProps> = ({
   name,
   placeholder,
   required,
-  value,
+  value = '',
+  type = 'text',
   onChange,
   onError,
 }) => {
-  const [text, setText] = useState(value);
+  const [text, setText] = useState<string>(value);
+
+  const isValidEmail = (email: string) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
 
   const handleValidation = () => {
     if (onError) {
       if (required && !text) {
         onError(ValidationTypes.required);
+      } else if (type === 'email' && !isValidEmail(text)) {
+        onError(ValidationTypes.email);
       } else {
         onError(ValidationTypes.none);
       }
@@ -47,7 +57,7 @@ const InputText: FC<InputTextProps> = ({
     <input
       id={id}
       className={cx(className, styles.InputText)}
-      type="text"
+      type={type}
       placeholder={placeholder}
       value={text}
       name={name}

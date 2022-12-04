@@ -10,9 +10,10 @@ interface FormTextProps {
   label: string;
   name?: string;
   placeholder?: string;
+  required?: boolean;
+  type?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
 }
 
 const FormText: FC<FormTextProps> = ({
@@ -22,6 +23,7 @@ const FormText: FC<FormTextProps> = ({
   name,
   onChange,
   required,
+  type,
   value,
 }) => {
   const [error, setError] = useState<string>();
@@ -40,6 +42,8 @@ const FormText: FC<FormTextProps> = ({
       setError('');
     } else if (e === ValidationTypes.required) {
       setError(errorMessages.required);
+    } else if (e === ValidationTypes.email) {
+      setError(errorMessages.email);
     }
   };
 
@@ -56,6 +60,7 @@ const FormText: FC<FormTextProps> = ({
         onChange={handleChange}
         name={name}
         value={text}
+        type={type}
         onError={handleError}
         required={required}
       />
