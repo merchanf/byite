@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState } from 'react';
 import cx from 'classnames';
 import { ValidationTypes } from '@interfaces/index';
 import styles from './InputText.module.scss';
