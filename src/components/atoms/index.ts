@@ -1,14 +1,15 @@
-import LoadingIcon from './LoadingIcon/LoadingIcon';
-import TextButton from './TextButton/TextButton';
 import CircularProgress from './CircularProgress/CircularProgress';
-import GooglePlacesAutocomplete from './GooglePlacesAutocomplete/GooglePlacesAutocomplete';
-import Title from './Title/Title';
-import Paragraph from './Paragraph/Paragraph';
-import Subtitle from './Subtitle/Subtitle';
 import CountriesDropdown from './CountriesDropdown/CountriesDropdown';
-import Modal from './Modal/Modal';
+import GooglePlacesAutocomplete from './GooglePlacesAutocomplete/GooglePlacesAutocomplete';
 import InputText from './InputText/InputText';
 import Label from './Label/Label';
+import LoadingIcon from './LoadingIcon/LoadingIcon';
+import Modal from './Modal/Modal';
+import Paragraph from './Paragraph/Paragraph';
+import Slider from './Slider/Slider';
+import Subtitle from './Subtitle/Subtitle';
+import TextButton from './TextButton/TextButton';
+import Title from './Title/Title';
 
 export {
   CircularProgress,
@@ -20,6 +21,7 @@ export {
   Title,
   Modal,
   Paragraph,
+  Slider,
   Subtitle,
   TextButton,
 };

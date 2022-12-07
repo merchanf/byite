@@ -9,6 +9,10 @@ import {
   faShare,
   faXmark,
   faCopy,
+  faPersonDress,
+  faPersonRunning,
+  faPersonWalking,
+  faCarSide,
 } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import FaIcon from './BaseFontAwesomeIcon';
@@ -57,15 +61,35 @@ const Copy: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faCopy} />
 );
 
+const PersonDress: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faPersonDress} />
+);
+
+const PersonRunning: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faPersonRunning} />
+);
+
+const CarSide: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faCarSide} />
+);
+
+const PersonWalking: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faPersonWalking} />
+);
+
 export {
-  Close,
-  Copy,
-  Heart,
   ArrowRight,
   ArrowLeft,
-  Phone,
+  CarSide,
+  Close,
+  Copy,
   Directions,
-  Share,
   Error,
+  Heart,
+  PersonDress,
+  PersonRunning,
+  PersonWalking,
+  Phone,
+  Share,
   Whatsapp,
 };
