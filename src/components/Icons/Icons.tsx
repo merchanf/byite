@@ -13,6 +13,8 @@ import {
   faPersonRunning,
   faPersonWalking,
   faCarSide,
+  faSliders,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import FaIcon from './BaseFontAwesomeIcon';
@@ -77,9 +79,18 @@ const PersonWalking: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faPersonWalking} />
 );
 
+const Sliders: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faSliders} />
+);
+
+const BackArrow: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faArrowLeft} />
+);
+
 export {
   ArrowRight,
   ArrowLeft,
+  BackArrow,
   CarSide,
   Close,
   Copy,
@@ -90,6 +101,7 @@ export {
   PersonRunning,
   PersonWalking,
   Phone,
+  Sliders,
   Share,
   Whatsapp,
 };
