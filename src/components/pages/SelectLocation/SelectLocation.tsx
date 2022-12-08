@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { Title, Subtitle, Paragraph } from '@components/atoms/index';
+import { Sliders } from '@icons/index';
+import { IconLink } from '@components/molecules/index';
 import { CurrentLocation, PlacesAutoComplete } from '@components/organisms';
 import { geoLocationAtom, countryAtom } from '@recoil/index';
 import { routes } from '@constants/index';
@@ -9,7 +11,7 @@ import { Layout } from '@components/templates/index';
 import { IGeoLocation } from '@interfaces/index';
 import styles from './SelectLocation.module.scss';
 
-const { SWIPE } = routes;
+const { SWIPE, SETTINGS } = routes;
 
 const SelectLocation: FC = () => {
   const [, setGeoLocation] = useRecoilState(geoLocationAtom);
@@ -35,6 +37,13 @@ const SelectLocation: FC = () => {
       <PlacesAutoComplete setGeoLocation={nextPage} country={country} />
       <Subtitle>Buscar restaurantes cerca a mi</Subtitle>
       <CurrentLocation setGeoLocation={nextPage} />
+      <IconLink
+        to={SETTINGS}
+        Icon={Sliders}
+        className={styles.SelectLocation__MoreOptions}
+      >
+        Más opciones
+      </IconLink>
     </Layout>
   );
 };

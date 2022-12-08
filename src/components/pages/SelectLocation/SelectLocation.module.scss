@@ -1,5 +1,14 @@
 .SelectLocation {
+  position: relative;
+
   &__GooglePlacesAutocomplete {
     width: 100%;
+  }
+
+  &__MoreOptions {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
