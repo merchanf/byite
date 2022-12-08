@@ -15,17 +15,12 @@ import styles from './SelectLocationPage.module.scss';
 
 const { SWIPE } = routes;
 
-const SelectLocationPage: FC = () => {
-  const [geoLocation, setGeoLocation] = useRecoilState(geoLocationAtom);
+const SettingsPage: FC = () => {
   const [country, setCountry] = useRecoilState(countryAtom);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (geoLocation) navigate(SWIPE);
-  }, [geoLocation]);
-
   return (
-    <Layout className={styles.SelectLocation}>
+    <Layout className={styles.Settings}>
       <CountriesDropdown
         className={styles.Settings__Dropdown}
         onSelect={setCountry}
@@ -35,4 +30,4 @@ const SelectLocationPage: FC = () => {
   );
 };
 
-export default SelectLocationPage;
+export default SettingsPage;

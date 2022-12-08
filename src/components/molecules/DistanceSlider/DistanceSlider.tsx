@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { Slider } from '@components/atoms/index';
 import { PersonDress, PersonWalking, CarSide } from '@components/icons/Icons';
+import styles from './DistanceSlider.module.scss';
 
 interface DistanceSliderProps {
   className?: string;
@@ -9,17 +10,17 @@ interface DistanceSliderProps {
 }
 
 const valueLabelFormat = (value: number) => {
-  if (value < 1) {
-    return `${value * 1000} m`;
+  if (value < 1000) {
+    return `${value} m`;
   }
-  return `${value} km`;
+  return `${value / 1000} km`;
 };
 
 const calculateValue = (value: number) => {
   if (value <= 10) {
-    return value / 10;
+    return value * 100;
   }
-  return value - 9;
+  return (value - 9) * 1000;
 };
 
 const DistanceSlider: FC<DistanceSliderProps> = ({ value }) => {
@@ -27,15 +28,15 @@ const DistanceSlider: FC<DistanceSliderProps> = ({ value }) => {
   const marks = [
     {
       value: 1,
-      label: <PersonDress />,
+      label: <PersonDress className={styles.Icon} />,
     },
     {
       value: 10,
-      label: <PersonWalking />,
+      label: <PersonWalking className={styles.Icon} />,
     },
     {
       value: 19,
-      label: <CarSide />,
+      label: <CarSide className={styles.Icon} />,
     },
   ];
 

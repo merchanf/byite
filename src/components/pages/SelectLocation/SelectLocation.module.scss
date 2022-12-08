@@ -1,21 +1,5 @@
 .SelectLocation {
-  position: relative;
-
-  &__Dropdown {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    grid-gap: 1rem;
-  }
-
   &__GooglePlacesAutocomplete {
     width: 100%;
-  }
-
-  &__Dropdown {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: clamp(30%, 200px, 50%);
   }
 }

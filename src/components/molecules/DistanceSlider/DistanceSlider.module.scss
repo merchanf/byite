@@ -1,0 +1,7 @@
+.Icon {
+  font-size: 1rem;
+
+  @include desktop {
+    font-size: 1.5rem;
+  }
+}
