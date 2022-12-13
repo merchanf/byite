@@ -3,13 +3,12 @@ import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import {
   ClickableIcon,
-  Title,
   Subtitle,
   Paragraph,
   CountriesDropdown,
   Toggle,
 } from '@components/atoms/index';
-import { Close } from '@icons/index';
+import { Close, PersonWalking, CarSide } from '@icons/index';
 import { DistanceSlider } from '@components/molecules/index';
 import { radiusAtom, countryAtom, openNowAtom } from '@recoil/index';
 import { routes } from '@constants/index';
@@ -40,8 +39,18 @@ const Settings: FC = () => {
   };
 
   const getETA = (distance: number) => {
-    const time = (distance * 60) / 4830;
-    return Math.ceil(time);
+    let icon = <CarSide />;
+    let divider = 30000;
+    if (distance <= 1000) {
+      icon = <PersonWalking />;
+      divider = 5000;
+    }
+    return (
+      <span>
+        &#40; {icon}
+        {` ~ ${Math.round((distance * 60) / divider)}min)`}
+      </span>
+    );
   };
 
   return (
@@ -63,7 +72,7 @@ const Settings: FC = () => {
         ¿Que tanto queremos caminar?
       </Subtitle>
       <Paragraph>
-        {valueLabelFormat(radius)} - {getETA(radius)}min
+        {valueLabelFormat(radius)} {getETA(radius)}
       </Paragraph>
       <DistanceSlider
         className={styles.Settings__Slider}
