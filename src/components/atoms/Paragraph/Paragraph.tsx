@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import cx from 'classnames';
 import styles from './Paragraph.module.scss';
 
 interface IProps {
   className?: string;
-  children: string;
+  children: ReactNode;
 }
 
 const Paragraph: FC<IProps> = ({ className, children }) => (

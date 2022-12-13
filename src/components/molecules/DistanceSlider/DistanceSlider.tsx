@@ -5,8 +5,8 @@ import styles from './DistanceSlider.module.scss';
 
 interface DistanceSliderProps {
   className?: string;
-  value: number | number[];
-  onChange: (newValue: number | number[]) => void;
+  value: number;
+  onChange: (newValue: number) => void;
 }
 
 const valueLabelFormat = (value: number) => {
@@ -23,8 +23,19 @@ const calculateValue = (value: number) => {
   return (value - 9) * 1000;
 };
 
-const DistanceSlider: FC<DistanceSliderProps> = ({ value }) => {
-  const [innerValue, setValue] = useState<number | number[]>(value);
+const DistanceSlider: FC<DistanceSliderProps> = ({
+  value,
+  className,
+  onChange,
+}) => {
+  const [innerValue, setValue] = useState<number>(value);
+
+  const handleChange = (newValue: number) => {
+    const calculatedValue = calculateValue(newValue);
+    setValue(calculatedValue);
+    onChange(calculatedValue);
+  };
+
   const marks = [
     {
       value: 1,
@@ -42,11 +53,12 @@ const DistanceSlider: FC<DistanceSliderProps> = ({ value }) => {
 
   return (
     <Slider
+      className={className}
       value={innerValue}
       marks={marks}
       calculateValue={calculateValue}
       valueLabelFormat={valueLabelFormat}
-      onChange={setValue}
+      onChange={handleChange}
       min={1}
       max={19}
       step={1}

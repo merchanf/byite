@@ -14,7 +14,7 @@ import {
   Phone,
   Sliders,
   Share,
-  Whatsapp,
+  WhatsApp,
 } from './Icons';
 import type { IIconProps } from './Icons';
 
@@ -34,7 +34,7 @@ export {
   Phone,
   Sliders,
   Share,
-  Whatsapp,
+  WhatsApp,
 };
 
 export type { IIconProps };

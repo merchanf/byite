@@ -2,7 +2,7 @@ import { FC } from 'react';
 import toast from 'react-hot-toast';
 import type { IRestaurantDetails } from '@services/index';
 import { TextButton, Subtitle, Paragraph } from '@components/atoms';
-import { Heart, Phone, Directions, Copy, Whatsapp } from '@icons/index';
+import { Heart, Phone, Directions, Copy, WhatsApp } from '@icons/index';
 import { distance, isIos, isMobilePhone } from '@utils/index';
 import { location } from '@constants/globals';
 import type { IGeoLocation } from '@interfaces/index';
@@ -82,7 +82,7 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
       <TextButton Icon={Heart} onClick={addToFavorites}>
         Agregar a favoritos
       </TextButton>
-      <TextButton onClick={shareRestaurant} Icon={Whatsapp}>
+      <TextButton onClick={shareRestaurant} Icon={WhatsApp}>
         Compartir en WhatsApp
       </TextButton>
       <TextButton onClick={copyToClipboard} Icon={Copy}>

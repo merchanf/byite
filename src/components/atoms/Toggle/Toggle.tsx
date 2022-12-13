@@ -3,12 +3,12 @@ import MuiToggle from './MuiToggle';
 
 interface ToggleProps {
   className?: string;
-  defaultChecked?: boolean;
+  checked?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Toggle: FC<ToggleProps> = ({ defaultChecked, onChange }) => {
-  return <MuiToggle defaultChecked={defaultChecked} onChange={onChange} />;
+const Toggle: FC<ToggleProps> = ({ checked, onChange }) => {
+  return <MuiToggle checked={checked} onChange={onChange} />;
 };
 
 export default Toggle;

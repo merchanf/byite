@@ -1,12 +1,32 @@
 .Settings {
+  width: 100%;
+  position: relative;
+
   &__Dropdown {
     display: flex;
     justify-content: center;
     width: 100%;
     grid-gap: 1rem;
-    position: absolute;
-    top: 12px;
-    right: 12px;
     width: clamp(30%, 200px, 50%);
+  }
+
+  &__Slider {
+    width: 80%;
+  }
+
+  &__Close {
+    all: unset;
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    font-size: 2rem;
+    color: $red-500;
+  }
+
+  &__Toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
   }
 }

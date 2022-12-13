@@ -14,7 +14,7 @@ const sessionAtom = atom<ISession | null>({
 
 const radiusAtom = atom<number>({
   key: 'radius',
-  default: 5000,
+  default: 1000,
 });
 
 const openNowAtom = atom<boolean>({

@@ -55,7 +55,7 @@ const Close: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faXmark} />
 );
 
-const Whatsapp: FC<IIconProps> = ({ className }) => (
+const WhatsApp: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faWhatsapp} />
 );
 
@@ -103,5 +103,5 @@ export {
   Phone,
   Sliders,
   Share,
-  Whatsapp,
+  WhatsApp,
 };

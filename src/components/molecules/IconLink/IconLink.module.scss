@@ -1,7 +1,15 @@
 .IconLink {
   border-bottom: 1px solid;
   padding: 0 4px;
-  color: $deepChampagne-500;
+  color: $blue-500;
+
+  &:hover {
+    color: $blue-600;
+  }
+
+  &:active {
+    color: $blue-700;
+  }
 
   &__Icon {
     margin-right: 8px;

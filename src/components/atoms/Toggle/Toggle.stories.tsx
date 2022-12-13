@@ -13,6 +13,6 @@ const onchange = (e: ChangeEvent<HTMLInputElement>) => {
 
 export const Default = () => <Toggle />;
 
-export const Checked = () => <Toggle defaultChecked />;
+export const Checked = () => <Toggle checked />;
 
 export const WithOnChange = () => <Toggle onChange={onchange} />;

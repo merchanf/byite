@@ -1,12 +1,13 @@
 import { FC, useState, ReactNode } from 'react';
+import cx from 'classnames';
 import Tooltip from '@mui/material/Tooltip';
 import { SliderValueLabelProps } from '@mui/material/Slider';
 import MuiSlider from './MuiSlider';
 
 interface SliderProps {
   className?: string;
-  value: number | number[];
-  onChange: (newValue: number | number[]) => void;
+  value: number;
+  onChange: (newValue: number) => void;
   ariaLabelledby?: string;
   marks?: Array<{ label?: ReactNode; value: number }> | boolean;
   valueLabelFormat?: (value: number) => string;
@@ -27,6 +28,7 @@ const ValueLabelComponent = (props: SliderValueLabelProps) => {
 };
 
 const Slider: FC<SliderProps> = ({
+  className,
   value,
   onChange,
   ariaLabelledby,
@@ -37,15 +39,15 @@ const Slider: FC<SliderProps> = ({
   valueLabelFormat,
   calculateValue,
 }) => {
-  const [innerValue, setInnerValue] = useState<number | number[]>(value);
+  const [innerValue, setInnerValue] = useState<number>(value);
 
   const handleChange = (_: Event, newValue: number | number[]) => {
     setInnerValue(newValue as number);
-    onChange(newValue);
+    onChange(newValue as number);
   };
 
   return (
-    <div>
+    <div className={className}>
       <MuiSlider
         valueLabelDisplay="auto"
         value={innerValue}
