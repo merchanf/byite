@@ -14,7 +14,7 @@ const Whoami: FC = () => {
 
   return (
     <Layout className={styles.Whoami}>
-      <Title>Cuéntanos quien eres!</Title>
+      <Title className={styles.Whoami__Title}>Cuéntanos quien eres!</Title>
       <div className={styles.Whoami__Form}>
         <span className={styles.Whoami__FullName}>
           <FormText
