@@ -35,10 +35,11 @@ const InputText: FC<InputTextProps> = ({
   };
 
   const handleValidation = () => {
-    if (onError) {
-      if (required && !text) {
+    if (onError && required) {
+      if (!text) {
         onError(ValidationTypes.required);
       } else if (type === 'email' && !isValidEmail(text)) {
+        console.log('type', type);
         onError(ValidationTypes.email);
       } else {
         onError(ValidationTypes.none);

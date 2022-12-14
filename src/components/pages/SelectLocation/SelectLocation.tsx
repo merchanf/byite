@@ -11,7 +11,7 @@ import { Layout } from '@components/templates/index';
 import { IGeoLocation } from '@interfaces/index';
 import styles from './SelectLocation.module.scss';
 
-const { SWIPE, SETTINGS } = routes;
+const { SWIPE, SETTINGS, WHOAMI } = routes;
 
 const SelectLocation: FC = () => {
   const [, setGeoLocation] = useRecoilState(geoLocationAtom);
@@ -21,7 +21,7 @@ const SelectLocation: FC = () => {
   const nextPage = (value: IGeoLocation | null) => {
     if (value) {
       setGeoLocation(value);
-      navigate(SWIPE);
+      navigate(WHOAMI);
     }
   };
 
