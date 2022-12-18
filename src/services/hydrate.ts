@@ -8,6 +8,7 @@ import {
   geoLocationAtom,
   sessionIdAtom,
   userUidAtom,
+  emailAtom,
 } from '@recoil/index';
 import sessionService from './session';
 import userService from './user';
@@ -52,10 +53,12 @@ const hydrate = async () => {
   initGoogleMaps();
   const userUid = setUserUid();
   const sessionId = (await setSessionId(userUid)) as string;
+  const email = await userService.getEmail(userUid);
 
   sessionStorage.setItem('sessionId', sessionId);
   setRecoil(sessionIdAtom, sessionId);
   setRecoil(userUidAtom, userUid);
+  setRecoil(emailAtom, email);
   sessionService.create(sessionId);
   userService.create(userUid);
   userService.addSession(userUid, sessionId);

@@ -1,8 +1,6 @@
 import { FC, ChangeEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
 import {
-  ClickableIcon,
   Subtitle,
   Paragraph,
   CountriesDropdown,
@@ -21,14 +19,9 @@ const Settings: FC = () => {
   const [country, setCountry] = useRecoilState(countryAtom);
   const [radius, setRadius] = useRecoilState(radiusAtom);
   const [openNow, setOpenNow] = useRecoilState(openNowAtom);
-  const navigate = useNavigate();
 
   const onToggleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOpenNow(!e.target.checked);
-  };
-
-  const handleOnclick = () => {
-    navigate(SELECT_LOCATION);
   };
 
   const valueLabelFormat = (value: number) => {

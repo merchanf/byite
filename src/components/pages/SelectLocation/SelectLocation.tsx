@@ -6,7 +6,12 @@ import { Sliders } from '@icons/index';
 import { IconLink } from '@components/molecules/index';
 import { CurrentLocation, PlacesAutoComplete } from '@components/organisms';
 import { userXLocation } from '@services/index';
-import { geoLocationAtom, countryAtom, userUidAtom } from '@recoil/index';
+import {
+  geoLocationAtom,
+  countryAtom,
+  userUidAtom,
+  emailAtom,
+} from '@recoil/index';
 import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
 import { IGeoLocation } from '@interfaces/index';
@@ -18,13 +23,19 @@ const SelectLocation: FC = () => {
   const [, setGeoLocation] = useRecoilState(geoLocationAtom);
   const country = useRecoilValue(countryAtom);
   const userUid = useRecoilValue(userUidAtom);
+  const email = useRecoilValue(emailAtom);
   const navigate = useNavigate();
 
   const nextPage = (value: IGeoLocation | null) => {
     if (value) {
       setGeoLocation(value);
       userXLocation.add(userUid, value);
-      navigate(WHOAMI);
+
+      if (email) {
+        navigate(SWIPE);
+      } else {
+        navigate(WHOAMI);
+      }
     }
   };
 

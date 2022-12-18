@@ -58,15 +58,26 @@ const create = async (userUid: string) => {
       userUid,
       sessions: [],
       timestamp: new Date(),
-      locations: [],
     },
     { merge: true }
   );
   return null;
 };
 
+const getEmail = async (userUid: string) => {
+  const db = getFirestore();
+  const docRef = doc(db, `users/${userUid}`);
+  const document = await getDoc(docRef);
+  if (document.exists()) {
+    const data = document.data();
+    return data?.email || '';
+  }
+  return '';
+};
+
 export default {
   addSession,
   addInfo,
   create,
+  getEmail,
 };
