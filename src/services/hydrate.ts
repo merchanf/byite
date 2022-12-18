@@ -9,6 +9,8 @@ import {
   sessionIdAtom,
   userUidAtom,
   emailAtom,
+  radiusAtom,
+  openNowAtom,
 } from '@recoil/index';
 import sessionService from './session';
 import userService from './user';
@@ -54,11 +56,16 @@ const hydrate = async () => {
   const userUid = setUserUid();
   const sessionId = (await setSessionId(userUid)) as string;
   const email = await userService.getEmail(userUid);
+  const radius = await sessionService.getRadius(userUid);
+  const openNow = await sessionService.getOpenNow(userUid);
 
   sessionStorage.setItem('sessionId', sessionId);
   setRecoil(sessionIdAtom, sessionId);
   setRecoil(userUidAtom, userUid);
   setRecoil(emailAtom, email);
+  setRecoil(radiusAtom, radius);
+  setRecoil(openNowAtom, openNow);
+
   sessionService.create(sessionId);
   userService.create(userUid);
   userService.addSession(userUid, sessionId);
