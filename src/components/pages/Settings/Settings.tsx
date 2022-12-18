@@ -31,12 +31,8 @@ const Settings: FC = () => {
     setOpenNow(!e.target.checked);
   };
 
-  const valueLabelFormat = (value: number) => {
-    if (value < 1000) {
-      return `${value} m`;
-    }
-    return `${value / 1000} km`;
-  };
+  const valueLabelFormat = (value: number) =>
+    value < 1000 ? `${value} m` : `${value / 1000} km`;
 
   const getETA = (distance: number) => {
     let icon = <CarSide />;
@@ -57,6 +53,9 @@ const Settings: FC = () => {
     await session.setSettings(userUid, radius, openNow);
   };
 
+  const getValue = (value: number) =>
+    value <= 1000 ? value / 100 : 9 + value / 1000;
+
   return (
     <Layout className={styles.Settings}>
       <Subtitle className={styles.Settings__Subtitle}>
@@ -75,7 +74,7 @@ const Settings: FC = () => {
       </Paragraph>
       <DistanceSlider
         className={styles.Settings__Slider}
-        value={radius / 100}
+        value={getValue(radius)}
         onChange={setRadius}
       />
       <Subtitle className={styles.Settings__Subtitle}>
