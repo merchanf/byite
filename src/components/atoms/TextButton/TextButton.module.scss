@@ -23,9 +23,12 @@
   }
 
   &:disabled {
-    background-color: $deepChampagne-100;
-    color: $oldBurgundy-500;
+    opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    background-color: $deepChampagne-500;
   }
 
   &__Icon {

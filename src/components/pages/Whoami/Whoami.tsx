@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react';
+import { FC, useState, useEffect, ChangeEvent } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -30,6 +30,8 @@ const Whoami: FC = () => {
   const [email, setEmail] = useRecoilState(emailAtom);
   const [nickName, setNickName] = useRecoilState(nickNameAtom);
   const userUid = useRecoilValue(userUidAtom);
+  const [disabled, setDisabled] = useState(true);
+  const navigate = useNavigate();
 
   const forms = {
     [FormFields.name]: setFirstName,
@@ -37,8 +39,6 @@ const Whoami: FC = () => {
     [FormFields.email]: setEmail,
     [FormFields.nickname]: setNickName,
   };
-
-  const navigate = useNavigate();
 
   const onChange = (
     formField: FormFields,
@@ -51,6 +51,10 @@ const Whoami: FC = () => {
     navigate(SWIPE);
     userService.addInfo(firstName, lastName, email, nickName, userUid);
   };
+
+  useEffect(() => {
+    setDisabled(![firstName, lastName, email, nickName].every(Boolean));
+  }, [firstName, lastName, email, nickName]);
 
   return (
     <Layout className={styles.Whoami}>
@@ -90,7 +94,11 @@ const Whoami: FC = () => {
         />
       </div>
 
-      <TextButton className={styles.Whoami__Button} onClick={handleOnClick}>
+      <TextButton
+        className={styles.Whoami__Button}
+        onClick={handleOnClick}
+        disabled={disabled}
+      >
         Búsquemos donde comer!
       </TextButton>
     </Layout>
