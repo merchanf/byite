@@ -8,6 +8,7 @@ import type { IRestaurantDetails } from './googleMaps';
 import session from './session';
 import user from './user';
 import getGeoLocation from './geoLocation';
+import userXLocation from './userXLocation';
 
 export {
   getGeoLocation,
@@ -17,6 +18,7 @@ export {
   hydrate,
   session,
   user,
+  userXLocation,
 };
 
 export type { IRestaurantDetails };

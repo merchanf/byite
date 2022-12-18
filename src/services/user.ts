@@ -58,6 +58,7 @@ const create = async (userUid: string) => {
       userUid,
       sessions: [],
       timestamp: new Date(),
+      locations: [],
     },
     { merge: true }
   );
