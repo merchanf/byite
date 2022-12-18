@@ -1,15 +1,20 @@
 import { atom } from 'recoil';
 import { getCountry } from '@utils/index';
-import { IGeoLocation, ISession } from '../interfaces/session';
+import { IGeoLocation } from '../interfaces/session';
 
 const geoLocationAtom = atom<IGeoLocation | null>({
   key: 'geoLocation',
   default: null,
 });
 
-const sessionAtom = atom<ISession | null>({
-  key: 'session',
-  default: null,
+const sessionIdAtom = atom<string>({
+  key: 'sessionId',
+  default: '',
+});
+
+const userUidAtom = atom<string>({
+  key: 'userUid',
+  default: '',
 });
 
 const radiusAtom = atom<number>({
@@ -27,4 +32,35 @@ const countryAtom = atom<string>({
   default: getCountry(),
 });
 
-export { countryAtom, geoLocationAtom, sessionAtom, radiusAtom, openNowAtom };
+const firstNameAtom = atom<string>({
+  key: 'name',
+  default: '',
+});
+
+const lastNameAtom = atom<string>({
+  key: 'lastName',
+  default: '',
+});
+
+const emailAtom = atom<string>({
+  key: 'email',
+  default: '',
+});
+
+const nickNameAtom = atom<string>({
+  key: 'nickName',
+  default: '',
+});
+
+export {
+  countryAtom,
+  geoLocationAtom,
+  radiusAtom,
+  openNowAtom,
+  firstNameAtom,
+  lastNameAtom,
+  emailAtom,
+  nickNameAtom,
+  sessionIdAtom,
+  userUidAtom,
+};

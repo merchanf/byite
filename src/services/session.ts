@@ -4,7 +4,7 @@ import {
   collection,
   getDoc,
   getFirestore,
-  setDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 const get = async (sessionId: string) => {
@@ -15,33 +15,35 @@ const get = async (sessionId: string) => {
   return null;
 };
 
-const addUser = async (sessionId: string, userUid: string) => {
-  const db = getFirestore();
-  const docRef = doc(db, `session/${sessionId}`);
-  const document = await getDoc(docRef);
-  if (document.exists()) {
-    const storedDoc = document.data();
-    if (!storedDoc.users.includes(userUid)) {
-      storedDoc.users = [...storedDoc.users, userUid];
-    }
-    await setDoc(docRef, storedDoc, { merge: true });
-  }
-  return null;
-};
-
 export const create = async (userUid: string) => {
   const db = getFirestore();
-  const userObject = {
+  const session = {
     users: [userUid],
     likedRestaurants: [],
     timestamp: new Date(),
   };
-  const document = await addDoc(collection(db, 'session'), userObject);
+  const document = await addDoc(collection(db, 'session'), session);
   return document.id;
+};
+
+export const setUserInfo = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  nickName: string,
+  userUid: string | undefined = ''
+) => {
+  const db = getFirestore();
+  const docRef = doc(db, 'users', userUid);
+  await updateDoc(docRef, {
+    firstName,
+    lastName,
+    email,
+    nickName,
+  });
 };
 
 export default {
   get,
-  addUser,
   create,
 };

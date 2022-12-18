@@ -1,4 +1,10 @@
-import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 
 const addSession = async (userUid: string, sessionId: string) => {
   const db = getFirestore();
@@ -8,8 +14,10 @@ const addSession = async (userUid: string, sessionId: string) => {
     const data = document.data();
     let visits = 0;
     let sessions = [];
-    if (data?.sessions) {
+    if (data?.visits) {
       visits = data.visits + 1;
+    } else {
+      visits = 1;
     }
 
     if (data?.sessions) {
@@ -24,6 +32,40 @@ const addSession = async (userUid: string, sessionId: string) => {
   return document.id;
 };
 
+export const addInfo = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  nickName: string,
+  userUid: string | undefined = ''
+) => {
+  const db = getFirestore();
+  const docRef = doc(db, 'users', userUid);
+  await updateDoc(docRef, {
+    firstName,
+    lastName,
+    email,
+    nickName,
+  });
+};
+
+const create = async (userUid: string) => {
+  const db = getFirestore();
+  const docRef = doc(db, `users/${userUid}`);
+  await setDoc(
+    docRef,
+    {
+      userUid,
+      sessions: [],
+      timestamp: new Date(),
+    },
+    { merge: true }
+  );
+  return null;
+};
+
 export default {
   addSession,
+  addInfo,
+  create,
 };

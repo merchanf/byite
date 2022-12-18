@@ -3,7 +3,12 @@ import { getRecoil, setRecoil } from 'recoil-nexus';
 import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore';
 import { sessionStorage, localStorage } from '@constants/globals';
-import { firebaseAppAtom, geoLocationAtom, sessionAtom } from '@recoil/index';
+import {
+  firebaseAppAtom,
+  geoLocationAtom,
+  sessionIdAtom,
+  userUidAtom,
+} from '@recoil/index';
 import sessionService from './session';
 import userService from './user';
 import { initGoogleMaps } from './googleMaps';
@@ -46,11 +51,13 @@ const hydrate = async () => {
   initFirebase();
   initGoogleMaps();
   const userUid = setUserUid();
-  const sessionId = await setSessionId(userUid);
+  const sessionId = (await setSessionId(userUid)) as string;
 
   sessionStorage.setItem('sessionId', sessionId);
-  setRecoil(sessionAtom, { userUid, sessionId });
-  sessionService.addUser(sessionId, userUid);
+  setRecoil(sessionIdAtom, sessionId);
+  setRecoil(userUidAtom, userUid);
+  sessionService.create(sessionId);
+  userService.create(userUid);
   userService.addSession(userUid, sessionId);
 };
 

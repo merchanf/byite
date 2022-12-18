@@ -1,6 +1,6 @@
 import IGooglePlacesAutocomplete from './googlePlacesAutocomplete';
 import ValidationTypes from './validationTypes';
-import { IGeoLocation, ISession } from './session';
+import { IGeoLocation } from './session';
 
-export type { IGooglePlacesAutocomplete, IGeoLocation, ISession };
+export type { IGooglePlacesAutocomplete, IGeoLocation };
 export { ValidationTypes };

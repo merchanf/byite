@@ -17,8 +17,8 @@ const Launcher: FC = () => {
       setIsHydrating(false);
     };
 
-    hydrateApp();
-  }, [isHydrating]);
+    if (isHydrating) hydrateApp();
+  }, []);
 
   return isHydrating ? (
     <div className={styles.Launcher}>
