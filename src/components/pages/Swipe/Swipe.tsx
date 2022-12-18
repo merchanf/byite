@@ -63,8 +63,6 @@ const Swipe: FC = () => {
     if (restaurants && activeIndex >= restaurants.length - 3) {
       if (nextPagination?.hasNextPage) {
         nextPagination.nextPage();
-      } else {
-        // TODO: Show a message that there are no more restaurants
       }
     }
   };

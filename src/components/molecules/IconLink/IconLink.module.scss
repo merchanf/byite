@@ -1,7 +1,9 @@
 .IconLink {
+  all: unset;
   border-bottom: 1px solid;
   padding: 0 4px;
   color: $blue-500;
+  cursor: pointer;
 
   &:hover {
     color: $blue-600;

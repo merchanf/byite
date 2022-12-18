@@ -1,24 +1,42 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IIconProps } from '@icons/index';
 import styles from './IconLink.module.scss';
 
 interface IconLinkProps {
   className?: string;
-  to: string;
+  to?: string;
   Icon?: React.FC<IIconProps>;
-  children: React.ReactNode;
+  children: ReactNode;
+  onClick?: () => void;
 }
 
-const IconLink: FC<IconLinkProps> = ({ className, to, Icon, children }) => {
+const IconLink: FC<IconLinkProps> = ({
+  className,
+  to = '/',
+  Icon,
+  children,
+  onClick,
+}) => {
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    navigate(to);
+  };
+
   return (
-    <span className={cx(styles.IconLink, className)}>
+    <button
+      type="button"
+      onClick={handleOnClick}
+      className={cx(styles.IconLink, className)}
+    >
       {Icon && <Icon className={styles.IconLink__Icon} />}
-      <Link className={styles.IconLink__Link} to={to}>
-        {children}
-      </Link>
-    </span>
+      <span className={styles.IconLink__Text}>{children}</span>
+    </button>
   );
 };
 

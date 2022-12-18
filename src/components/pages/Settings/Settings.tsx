@@ -1,21 +1,28 @@
 import { FC, ChangeEvent } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   Subtitle,
   Paragraph,
   CountriesDropdown,
   Toggle,
 } from '@components/atoms/index';
-import { Close, PersonWalking, CarSide } from '@icons/index';
 import { DistanceSlider, IconLink } from '@components/molecules/index';
-import { radiusAtom, countryAtom, openNowAtom } from '@recoil/index';
+import { Close, PersonWalking, CarSide } from '@icons/index';
+import {
+  radiusAtom,
+  countryAtom,
+  openNowAtom,
+  userUidAtom,
+} from '@recoil/index';
 import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
+import { session } from '@services/index';
 import styles from './Settings.module.scss';
 
 const { SELECT_LOCATION } = routes;
 
 const Settings: FC = () => {
+  const userUid = useRecoilValue(userUidAtom);
   const [country, setCountry] = useRecoilState(countryAtom);
   const [radius, setRadius] = useRecoilState(radiusAtom);
   const [openNow, setOpenNow] = useRecoilState(openNowAtom);
@@ -44,6 +51,10 @@ const Settings: FC = () => {
         {` ~ ${Math.round((distance * 60) / divider)}min)`}
       </span>
     );
+  };
+
+  const handleOnClick = async () => {
+    await session.setSettings(userUid, radius, openNow);
   };
 
   return (
@@ -76,9 +87,10 @@ const Settings: FC = () => {
         <Paragraph>Sí</Paragraph>
       </span>
       <IconLink
-        to={SELECT_LOCATION}
         Icon={Close}
         className={styles.Settings__Close}
+        to={SELECT_LOCATION}
+        onClick={handleOnClick}
       >
         Volver atrás
       </IconLink>

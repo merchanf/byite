@@ -43,7 +43,21 @@ export const setUserInfo = async (
   });
 };
 
+const setSettings = async (
+  userUid: string,
+  radius: number,
+  openNow: boolean
+) => {
+  const db = getFirestore();
+  const docRef = doc(db, 'users', userUid);
+  await updateDoc(docRef, {
+    radius,
+    openNow,
+  });
+};
+
 export default {
   get,
   create,
+  setSettings,
 };

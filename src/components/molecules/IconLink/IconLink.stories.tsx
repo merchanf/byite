@@ -14,3 +14,13 @@ export const WithIcon = () => (
     Click me!
   </IconLink>
 );
+
+export const WithOnClick = () => (
+  <IconLink onClick={() => console.log('clicked!')}>Click me!</IconLink>
+);
+
+export const WithIconAndOnClick = () => (
+  <IconLink onClick={() => console.log('clicked!')} Icon={Heart}>
+    Click me!
+  </IconLink>
+);
