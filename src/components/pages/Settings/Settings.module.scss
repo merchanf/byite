@@ -15,12 +15,10 @@
   }
 
   &__Close {
-    all: unset;
     position: absolute;
-    right: 32px;
-    top: 32px;
-    font-size: 2rem;
-    color: $red-500;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &__Toggle {

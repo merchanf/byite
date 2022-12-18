@@ -9,7 +9,7 @@ import {
   Toggle,
 } from '@components/atoms/index';
 import { Close, PersonWalking, CarSide } from '@icons/index';
-import { DistanceSlider } from '@components/molecules/index';
+import { DistanceSlider, IconLink } from '@components/molecules/index';
 import { radiusAtom, countryAtom, openNowAtom } from '@recoil/index';
 import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
@@ -55,11 +55,6 @@ const Settings: FC = () => {
 
   return (
     <Layout className={styles.Settings}>
-      <ClickableIcon
-        className={styles.Settings__Close}
-        onClick={handleOnclick}
-        Icon={Close}
-      />
       <Subtitle className={styles.Settings__Subtitle}>
         ¿En que país te encuentras?
       </Subtitle>
@@ -87,6 +82,13 @@ const Settings: FC = () => {
         <Toggle checked={!openNow} onChange={onToggleChange} />
         <Paragraph>Sí</Paragraph>
       </span>
+      <IconLink
+        to={SELECT_LOCATION}
+        Icon={Close}
+        className={styles.Settings__Close}
+      >
+        Volver atrás
+      </IconLink>
     </Layout>
   );
 };
