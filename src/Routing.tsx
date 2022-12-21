@@ -5,10 +5,11 @@ import {
   Swipe,
   Settings,
   Whoami,
+  Profile,
 } from '@pages/index';
 import { routes } from '@constants/index';
 
-const { BASE, SELECT_LOCATION, SWIPE, SETTINGS, WHOAMI } = routes;
+const { BASE, SELECT_LOCATION, SWIPE, SETTINGS, WHOAMI, PROFILE } = routes;
 
 const Routing = () => {
   return (
@@ -19,6 +20,7 @@ const Routing = () => {
         <Route path={SWIPE} element={<Swipe />} />
         <Route path={SETTINGS} element={<Settings />} />
         <Route path={WHOAMI} element={<Whoami />} />
+        <Route path={PROFILE} element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
