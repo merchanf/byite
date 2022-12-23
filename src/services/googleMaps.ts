@@ -47,12 +47,12 @@ const initGoogleMaps = () => {
 };
 
 const getPictures = (photos: google.maps.places.PlacePhoto[] | undefined) => {
-  if (!photos) return null;
+  if (!photos) return [];
   const pictures = photos.map((photo) =>
     photo.getUrl({ maxWidth: 1280, maxHeight: 720 })
   );
   if (pictures && pictures.length > 1) pictures.shift();
-  return pictures;
+  return pictures ?? [];
 };
 
 interface IRestaurantDetails {
@@ -62,7 +62,7 @@ interface IRestaurantDetails {
   name: string | undefined;
   rating: number | undefined;
   phoneNumber: string | undefined;
-  pictures: string[] | null;
+  pictures: string[];
 }
 
 const dataMapper = ({

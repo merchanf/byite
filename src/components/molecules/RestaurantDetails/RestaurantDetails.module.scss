@@ -1,8 +1,20 @@
 .RestaurantDetails {
-  display: flex;
-  flex-direction: column;
   height: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+
+  &__Titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__Gallery {
+    margin: 1rem 0;
+  }
+
+  &__Buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }

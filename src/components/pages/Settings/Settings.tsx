@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react';
+import { FC, ChangeEvent, useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   Subtitle,
@@ -55,6 +55,10 @@ const Settings: FC = () => {
 
   const getValue = (value: number) =>
     value <= 1000 ? value / 100 : 9 + value / 1000;
+
+  useEffect(() => {
+    console.log('Settings mounted', radius);
+  }, []);
 
   return (
     <Layout className={styles.Settings}>

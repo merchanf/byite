@@ -64,8 +64,7 @@ const Gallery: FC<IGalleryProps> = ({ pictures }) => {
           )}
         </ModalGateway>
       </>
-    )) ||
-    null
+    )) || <h1>No pictures</h1>
   );
 };
 

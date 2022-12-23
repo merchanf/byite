@@ -58,6 +58,8 @@ const create = async (userUid: string) => {
       userUid,
       sessions: [],
       timestamp: new Date(),
+      radius: 1000,
+      openNow: true,
     },
     { merge: true }
   );

@@ -22,7 +22,11 @@ const RestaurantInfo: FC<IRestaurantInfoProps> = ({ restaurant }) => {
         </SwiperSlide>
       )}
       <SwiperSlide>
-        <RestaurantDetails restaurant={restaurant} geoLocation={geoLocation} />
+        <RestaurantDetails
+          restaurant={restaurant}
+          geoLocation={geoLocation}
+          showGallery
+        />
       </SwiperSlide>
     </Swiper>
   );
