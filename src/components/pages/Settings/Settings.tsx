@@ -1,13 +1,14 @@
-import { FC, ChangeEvent, useState, useEffect } from 'react';
+import { FC, ChangeEvent } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   Subtitle,
   Paragraph,
   CountriesDropdown,
   Toggle,
+  DistanceCalculator,
 } from '@components/atoms/index';
 import { DistanceSlider, IconLink } from '@components/molecules/index';
-import { Close, PersonWalking, CarSide } from '@icons/index';
+import { Close } from '@icons/index';
 import {
   radiusAtom,
   countryAtom,
@@ -31,34 +32,12 @@ const Settings: FC = () => {
     setOpenNow(!e.target.checked);
   };
 
-  const valueLabelFormat = (value: number) =>
-    value < 1000 ? `${value} m` : `${value / 1000} km`;
-
-  const getETA = (distance: number) => {
-    let icon = <CarSide />;
-    let divider = 30000;
-    if (distance <= 1000) {
-      icon = <PersonWalking />;
-      divider = 5000;
-    }
-    return (
-      <span>
-        &#40; {icon}
-        {` ~ ${Math.round((distance * 60) / divider)}min)`}
-      </span>
-    );
-  };
-
   const handleOnClick = async () => {
     await session.setSettings(userUid, radius, openNow);
   };
 
   const getValue = (value: number) =>
     value <= 1000 ? value / 100 : 9 + value / 1000;
-
-  useEffect(() => {
-    console.log('Settings mounted', radius);
-  }, []);
 
   return (
     <Layout className={styles.Settings}>
@@ -74,7 +53,7 @@ const Settings: FC = () => {
         ¿Que tanto queremos caminar?
       </Subtitle>
       <Paragraph>
-        {valueLabelFormat(radius)} {getETA(radius)}
+        <DistanceCalculator radius={radius} />
       </Paragraph>
       <DistanceSlider
         className={styles.Settings__Slider}

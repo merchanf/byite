@@ -11,7 +11,7 @@ import {
   radiusAtom,
   openNowAtom,
 } from '@recoil/index';
-import { RestaurantInfo } from '@components/organisms';
+import { RestaurantInfo } from '@components/organisms/index';
 import { Layout } from '@components/templates';
 import type { IGeoLocation } from '@interfaces/index';
 import 'swiper/css';

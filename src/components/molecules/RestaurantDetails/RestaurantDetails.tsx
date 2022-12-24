@@ -1,9 +1,14 @@
 import { FC } from 'react';
-import toast from 'react-hot-toast';
 import type { IRestaurantDetails } from '@services/index';
-import { TextButton, Subtitle, Paragraph, Gallery } from '@components/atoms';
-import { Heart, Phone, Directions, Copy, WhatsApp } from '@icons/index';
-import { distance, isIos, isMobilePhone } from '@utils/index';
+import {
+  TextButton,
+  Subtitle,
+  Paragraph,
+  Gallery,
+  DistanceCalculator,
+} from '@components/atoms';
+import { Phone, Directions, WhatsApp } from '@icons/index';
+import { distanceInMeters, isIos, isMobilePhone } from '@utils/index';
 import { location } from '@constants/globals';
 import type { IGeoLocation } from '@interfaces/index';
 import styles from './RestaurantDetails.module.scss';
@@ -51,43 +56,24 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
     location.href = `whatsapp://send/?text=${text}`;
   };
 
-  const addToFavorites = () => {
-    toast('Agregado a favoritos');
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(url);
-    toast('Enlace copiado al portapapeles');
-  };
-
-  const picturess = [
-    'https://via.placeholder.com/600x930/9B59B6?text=El%20Corral',
-    'https://via.placeholder.com/600x930/2E86C1?text=El%20Corral',
-    'https://via.placeholder.com/600x930/1ABC9C?text=El%20Corral',
-    'https://via.placeholder.com/600x930/F1C40F?text=El%20Corral',
-    'https://via.placeholder.com/600x930/7F8C8D?text=El%20Corral',
-    'https://via.placeholder.com/600x930/7F8C8D?text=El%20Corral',
-  ];
+  const radius = distanceInMeters(
+    Number(geoLocation?.lat),
+    Number(geoLocation?.lng),
+    Number(latitude),
+    Number(longitude)
+  );
 
   return (
     <div className={styles.RestaurantDetails}>
       <div className={styles.RestaurantDetails__Titles}>
-        <Subtitle>{name}</Subtitle>
+        <Subtitle className={styles.RestaurantDetails__Title}>{name}</Subtitle>
         {geoLocation && latitude && longitude && (
-          <Paragraph>
-            {`a ${distance(
-              geoLocation.lat,
-              geoLocation.lng,
-              latitude,
-              longitude
-            )}
-            de ti`}
-          </Paragraph>
+          <DistanceCalculator radius={Math.round(radius)} />
         )}
       </div>
       {showGallery && restaurant?.pictures && (
         <div className={styles.RestaurantDetails__Gallery}>
-          <Gallery pictures={picturess} />
+          <Gallery pictures={pictures} />
         </div>
       )}
       <div className={styles.RestaurantDetails__Buttons}>
@@ -97,14 +83,8 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
         <TextButton Icon={Directions} onClick={getDirections}>
           Ver en Google Maps
         </TextButton>
-        <TextButton Icon={Heart} onClick={addToFavorites}>
-          Agregar a favoritos
-        </TextButton>
         <TextButton onClick={shareRestaurant} Icon={WhatsApp}>
           Compartir en WhatsApp
-        </TextButton>
-        <TextButton onClick={copyToClipboard} Icon={Copy}>
-          Copiar al portapapeles
         </TextButton>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import CircularProgress from './CircularProgress/CircularProgress';
 import ClickableIcon from './ClickableIcon/ClickableIcon';
 import CountriesDropdown from './CountriesDropdown/CountriesDropdown';
+import DistanceCalculator from './DistanceCalculator/DistanceCalculator';
 import Gallery from './Gallery/Gallery';
 import GooglePlacesAutocomplete from './GooglePlacesAutocomplete/GooglePlacesAutocomplete';
 import InputText from './InputText/InputText';
@@ -18,6 +19,7 @@ export {
   CircularProgress,
   ClickableIcon,
   CountriesDropdown,
+  DistanceCalculator,
   Gallery,
   GooglePlacesAutocomplete,
   InputText,

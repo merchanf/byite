@@ -1,5 +1,9 @@
 .RestaurantDetails {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   &__Titles {
     display: flex;
@@ -7,8 +11,21 @@
     align-items: center;
   }
 
+  &__Title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2rem 0 0 0;
+  }
+
+  &__Subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0.5rem 0 0 0;
+  }
+
   &__Gallery {
-    margin: 1rem 0;
+    margin: 1rem auto 2rem auto;
+    width: 60%;
   }
 
   &__Buttons {
@@ -16,5 +33,11 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+  }
+
+  @include desktop {
+    &__Gallery {
+      width: 80%;
+    }
   }
 }

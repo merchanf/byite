@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { IRestaurantDetails } from '@services/index';
-import { Gallery, RestaurantDetails } from '@components/molecules';
+import { RestaurantDetails, Gallery } from '@components/molecules/index';
 import { geoLocationAtom } from '@recoil/index';
 import type { IGeoLocation } from '@interfaces/index';
 import styles from './RestaurantInfo.module.scss';
