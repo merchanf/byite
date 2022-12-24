@@ -3,7 +3,6 @@ import type { IRestaurantDetails } from '@services/index';
 import {
   TextButton,
   Subtitle,
-  Paragraph,
   Gallery,
   DistanceCalculator,
 } from '@components/atoms';
