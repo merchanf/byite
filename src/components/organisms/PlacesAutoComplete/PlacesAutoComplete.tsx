@@ -4,7 +4,7 @@ import {
   CircularProgress,
 } from '@components/atoms/index';
 import { env } from '@constants/index';
-import { getRestaurantDetails } from '@services/index';
+import { IRestaurantDetails, getRestaurantDetails } from '@services/index';
 import type {
   IGeoLocation,
   IGooglePlacesAutocomplete,
@@ -14,28 +14,37 @@ import styles from './PlacesAutoComplete.module.scss';
 interface IPlacesAutoComplete {
   setGeoLocation: (geoLocation: IGeoLocation) => void;
   country: string;
+  googleMapsInstance: google.maps.Map;
 }
 
 const { GOOGLE_API_KEY } = env;
 
 const PlacesAutoComplete: FC<IPlacesAutoComplete> = ({
-  setGeoLocation,
   country,
+  googleMapsInstance,
+  setGeoLocation,
 }) => {
   const [zone, setZone] = useState<IGooglePlacesAutocomplete>();
   const [loading, setLoading] = useState(false);
+
+  const callback = ({
+    location: { latitude, longitude },
+  }: IRestaurantDetails) => {
+    setGeoLocation({
+      lat: Number(latitude),
+      lng: Number(longitude),
+    });
+  };
 
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       setLoading(true);
       if (zone?.value?.place_id) {
-        const {
-          // needed for a bug in the google places interface
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          location: { latitude: lat, longitude: lng },
-        } = await getRestaurantDetails(zone.value.place_id);
-        setGeoLocation({ lat, lng });
+        await getRestaurantDetails(
+          zone.value.place_id,
+          googleMapsInstance,
+          callback
+        );
         setLoading(false);
       }
     };

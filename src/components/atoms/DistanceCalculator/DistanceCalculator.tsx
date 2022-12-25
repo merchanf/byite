@@ -18,22 +18,20 @@ const DistanceCalculator: FC<IDistanceCalculatorProps> = ({
     : (radius / 1000).toFixed(1);
 
   return (
-    <div className={cx(className, styles.DistanceCalculator)}>
-      <Paragraph>
-        {radius < 1000 ? `${radius} m` : `${roundedRadius} km`}
-        {radius <= 1000 ? (
-          <span className={styles.DistanceCalculator__Paragraph}>
-            &#40; <PersonWalking />
-            {` ~ ${Math.round((radius * 60) / 4828)}min)`}
-          </span>
-        ) : (
-          <span className={styles.DistanceCalculator__Paragraph}>
-            &#40; <CarSide />
-            {` ~ ${Math.round((radius * 60) / 30000)}min)`}
-          </span>
-        )}
-      </Paragraph>
-    </div>
+    <Paragraph className={cx(className, styles.DistanceCalculator)}>
+      {radius < 1000 ? `${radius} m` : `${roundedRadius} km`}
+      {radius <= 1000 ? (
+        <span className={styles.DistanceCalculator__Paragraph}>
+          &#40; <PersonWalking />
+          {` ~ ${Math.round((radius * 60) / 4828)}min)`}
+        </span>
+      ) : (
+        <span className={styles.DistanceCalculator__Paragraph}>
+          &#40; <CarSide />
+          {` ~ ${Math.round((radius * 60) / 30000)}min)`}
+        </span>
+      )}
+    </Paragraph>
   );
 };
 

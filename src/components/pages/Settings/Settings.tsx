@@ -52,9 +52,7 @@ const Settings: FC = () => {
       <Subtitle className={styles.Settings__Subtitle}>
         ¿Que tanto queremos caminar?
       </Subtitle>
-      <Paragraph>
-        <DistanceCalculator radius={radius} />
-      </Paragraph>
+      <DistanceCalculator radius={radius} />
       <DistanceSlider
         className={styles.Settings__Slider}
         value={getValue(radius)}

@@ -11,6 +11,7 @@ import {
   countryAtom,
   userUidAtom,
   emailAtom,
+  gMapsInstanceAtom,
 } from '@recoil/index';
 import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
@@ -24,13 +25,13 @@ const SelectLocation: FC = () => {
   const country = useRecoilValue(countryAtom);
   const userUid = useRecoilValue(userUidAtom);
   const email = useRecoilValue(emailAtom);
+  const gMapsInstance = useRecoilValue(gMapsInstanceAtom);
   const navigate = useNavigate();
 
   const nextPage = (value: IGeoLocation | null) => {
     if (value) {
       setGeoLocation(value);
       userXLocation.add(userUid, value);
-
       if (email) {
         navigate(SWIPE);
       } else {
@@ -48,7 +49,11 @@ const SelectLocation: FC = () => {
         restaurantes de la zona.
       </Paragraph>
       <Subtitle>Buscar en zona</Subtitle>
-      <PlacesAutoComplete setGeoLocation={nextPage} country={country} />
+      <PlacesAutoComplete
+        setGeoLocation={nextPage}
+        country={country}
+        googleMapsInstance={gMapsInstance}
+      />
       <Subtitle>Buscar restaurantes cerca a mi</Subtitle>
       <CurrentLocation setGeoLocation={nextPage} />
       <IconLink
