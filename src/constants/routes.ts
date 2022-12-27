@@ -6,6 +6,7 @@ const routes = {
   BASE: '/',
   PROFILE: '/profile',
   WHOAMI: '/whoami',
+  SHARED: '/shared',
 };
 
 export default routes;

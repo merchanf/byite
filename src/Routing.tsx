@@ -6,10 +6,12 @@ import {
   Settings,
   Whoami,
   Profile,
+  SharingLauncher,
 } from '@pages/index';
 import { routes } from '@constants/index';
 
-const { BASE, SELECT_LOCATION, SWIPE, SETTINGS, WHOAMI, PROFILE } = routes;
+const { BASE, SELECT_LOCATION, SWIPE, SETTINGS, WHOAMI, PROFILE, SHARED } =
+  routes;
 
 const Routing = () => {
   return (
@@ -21,6 +23,7 @@ const Routing = () => {
         <Route path={SETTINGS} element={<Settings />} />
         <Route path={WHOAMI} element={<Whoami />} />
         <Route path={PROFILE} element={<Profile />} />
+        <Route path={`${SHARED}/:placeId`} element={<SharingLauncher />} />
       </Routes>
     </BrowserRouter>
   );
