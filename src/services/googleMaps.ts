@@ -65,16 +65,18 @@ interface IRestaurantDetails {
   pictures: string[];
 }
 
-const dataMapper = ({
-  place_id,
-  vicinity,
-  geometry,
-  name,
-  rating,
-  international_phone_number,
-  photos,
-}: google.maps.places.PlaceResult) => ({
-  placeId: place_id,
+const dataMapper = (
+  placeId: string,
+  {
+    vicinity,
+    geometry,
+    name,
+    rating,
+    international_phone_number,
+    photos,
+  }: google.maps.places.PlaceResult
+) => ({
+  placeId,
   address: vicinity,
   location: {
     latitude: geometry?.location?.lat(),
@@ -98,7 +100,7 @@ const getRestaurantDetails = async (
   };
   const service = new google.maps.places.PlacesService(googleMapsInstance);
   service.getDetails(request, (details) => {
-    if (details) callback(dataMapper(details));
+    if (details) callback(dataMapper(placeId, details));
   });
 };
 
