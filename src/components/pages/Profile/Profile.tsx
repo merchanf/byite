@@ -1,20 +1,24 @@
-import { FC, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Layout } from '@components/templates/index';
-import { RestaurantInfo } from '@components/organisms/index';
+import { RestaurantDetails, Loader } from '@components/molecules/index';
+import useGetRestaurantInformation from './useGetRestaurantInformation';
+
+type State = {
+  placeId: string;
+};
 
 const Profile: FC = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    console.log('navigate', navigate);
-  }, [navigate]);
+  const { state } = useLocation();
+  const { placeId } = state as State;
+  const { loading, restaurant } = useGetRestaurantInformation(placeId);
 
   return (
     <Layout>
-      {/* restaurant && <RestaurantInfo restaurant={restaurant} /> */}
-      {loading && <div>Loading...</div>}
+      {!loading && restaurant && (
+        <RestaurantDetails restaurant={restaurant} showGallery />
+      )}
+      {loading && <Loader />}
     </Layout>
   );
 };

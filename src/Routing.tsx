@@ -6,7 +6,6 @@ import {
   Settings,
   Whoami,
   Profile,
-  SharingLauncher,
 } from '@pages/index';
 import { routes } from '@constants/index';
 
@@ -23,7 +22,7 @@ const Routing = () => {
         <Route path={SETTINGS} element={<Settings />} />
         <Route path={WHOAMI} element={<Whoami />} />
         <Route path={PROFILE} element={<Profile />} />
-        <Route path={`${SHARED}/:placeId`} element={<SharingLauncher />} />
+        <Route path={`${SHARED}/:placeId`} element={<Launcher />} />
       </Routes>
     </BrowserRouter>
   );

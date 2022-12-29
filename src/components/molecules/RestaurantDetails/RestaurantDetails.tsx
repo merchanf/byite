@@ -32,7 +32,7 @@ const RestaurantDetails: FC<IRestaurantDetailsProps> = ({
   } = restaurant;
 
   const { protocol, host } = location;
-  const url = `${protocol}//${host}/?restaurant=${placeId}`;
+  const url = `${protocol}//${host}/shared/${placeId}`;
 
   const callRestaurant = () => {
     window.open(`tel:${phoneNumber}`);
