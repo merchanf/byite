@@ -11,6 +11,7 @@ import {
   radiusAtom,
   openNowAtom,
 } from '@recoil/index';
+import { Instructions } from '@components/molecules/index';
 import { RestaurantInfo } from '@components/organisms/index';
 import { Layout } from '@components/templates';
 import type { IGeoLocation } from '@interfaces/index';
@@ -68,20 +69,23 @@ const Swipe: FC = () => {
   };
 
   return (
-    <Swiper
-      className={cx(styles.Swiper__Swiper, 'mySwiper swiper-h')}
-      spaceBetween={50}
-      onSlideChange={handleOnSlideChange}
-    >
-      {restaurants &&
-        restaurants.map((restaurant) => (
-          <SwiperSlide key={restaurant.name}>
-            <Layout>
-              <RestaurantInfo restaurant={restaurant} />
-            </Layout>
-          </SwiperSlide>
-        ))}
-    </Swiper>
+    <>
+      <Instructions />
+      <Swiper
+        className={cx(styles.Swiper__Swiper, 'mySwiper swiper-h')}
+        spaceBetween={50}
+        onSlideChange={handleOnSlideChange}
+      >
+        {restaurants &&
+          restaurants.map((restaurant) => (
+            <SwiperSlide key={restaurant.name}>
+              <Layout>
+                <RestaurantInfo restaurant={restaurant} />
+              </Layout>
+            </SwiperSlide>
+          ))}
+      </Swiper>
+    </>
   );
 };
 

@@ -12,3 +12,9 @@ const onClick = () => {
 };
 
 export const Default = () => <ClickableIcon onClick={onClick} Icon={Heart} />;
+
+export const WithText = () => (
+  <ClickableIcon onClick={onClick} Icon={Heart}>
+    Click me
+  </ClickableIcon>
+);
