@@ -25,7 +25,7 @@ const SelectLocation: FC = () => {
   const country = useRecoilValue(countryAtom);
   const userUid = useRecoilValue(userUidAtom);
   const email = useRecoilValue(emailAtom);
-  const gMapsInstance = useRecoilValue(gMapsInstanceAtom);
+  const gMapsInstance = useRecoilValue(gMapsInstanceAtom) as google.maps.Map;
   const navigate = useNavigate();
 
   const nextPage = (value: IGeoLocation | null) => {

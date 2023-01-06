@@ -9,7 +9,8 @@
 
   &__Layout {
     display: grid;
-    grid-template-rows: 3fr auto 1fr;
+    grid-template-rows: 3fr auto 2fr;
+    margin-top: 1rem;
   }
 
   &__Top {
@@ -57,7 +58,7 @@
   &__Bottom {
     display: grid;
     grid-template-columns: 3fr 2fr;
-    align-items: center;
+    justify-items: flex-start;
     width: 90%;
     margin: 0 auto;
   }
@@ -78,6 +79,12 @@
   &__Icon {
     font-size: 1.5rem;
     color: $white;
+  }
+
+  @include desktop {
+    &__Layout {
+      margin-top: 2rem;
+    }
   }
 }
 

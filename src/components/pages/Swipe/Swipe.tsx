@@ -11,6 +11,7 @@ import {
   radiusAtom,
   openNowAtom,
 } from '@recoil/index';
+import { withSession } from '@components/HOCs/index';
 import { Instructions } from '@components/molecules/index';
 import { RestaurantInfo } from '@components/organisms/index';
 import { Layout } from '@components/templates';
@@ -89,4 +90,4 @@ const Swipe: FC = () => {
   );
 };
 
-export default Swipe;
+export default withSession(Swipe);

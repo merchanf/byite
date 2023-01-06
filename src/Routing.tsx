@@ -12,6 +12,10 @@ import { routes } from '@constants/index';
 const { BASE, SELECT_LOCATION, SWIPE, SETTINGS, WHOAMI, PROFILE, SHARED } =
   routes;
 
+const Test = () => {
+  return <div>Test</div>;
+};
+
 const Routing = () => {
   return (
     <BrowserRouter>
@@ -23,6 +27,7 @@ const Routing = () => {
         <Route path={WHOAMI} element={<Whoami />} />
         <Route path={PROFILE} element={<Profile />} />
         <Route path={`${SHARED}/:placeId`} element={<Launcher />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

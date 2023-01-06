@@ -6,6 +6,10 @@ import { Layout } from '@components/templates/index';
 import styles from './Instructions.module.scss';
 
 const Instructions: FC = () => {
+  // get value from local storage
+  const openAndNeverShowAgain = window.localStorage.getItem(
+    'openAndNeverShowAgain'
+  );
   const [open, setOpen] = useState(true);
 
   const close = () => {
@@ -14,8 +18,12 @@ const Instructions: FC = () => {
 
   const closeAndDontShowAgain = () => {
     close();
-    // set value in local storage
+    window.localStorage.setItem('openAndNeverShowAgain', 'true');
   };
+
+  if (openAndNeverShowAgain) {
+    return null;
+  }
 
   return (
     <div
