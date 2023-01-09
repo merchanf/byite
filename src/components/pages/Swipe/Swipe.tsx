@@ -12,13 +12,17 @@ import {
   openNowAtom,
 } from '@recoil/index';
 import { withSession } from '@components/HOCs/index';
-import { Instructions } from '@components/molecules/index';
+import { Instructions, Error, IconLink } from '@components/molecules/index';
 import { RestaurantInfo } from '@components/organisms/index';
 import { Layout } from '@components/templates';
 import type { IGeoLocation } from '@interfaces/index';
+import { FaceFrown, FaceDizzy, House } from '@components/icons/index';
+import { routes } from '@constants/index';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './Swipe.module.scss';
+
+const { BASE } = routes;
 
 const Swipe: FC = () => {
   const gMapsInstance = useRecoilValue(gMapsInstanceAtom);
@@ -69,9 +73,15 @@ const Swipe: FC = () => {
     }
   };
 
+  const text =
+    restaurants && restaurants.length > 0
+      ? 'No hay más restaurantes disponibles, toco ir al que dijo tu novia'
+      : 'Parece que no hay restaurantes disponibles en tu zona. Prueba ampliando el rango de búsqueda o mudandote a otra parte de la ciudad.';
+
+  const Icon = restaurants && restaurants.length > 0 ? FaceFrown : FaceDizzy;
   return (
     <>
-      <Instructions />
+      {restaurants && <Instructions />}
       <Swiper
         className={cx(styles.Swiper__Swiper, 'mySwiper swiper-h')}
         spaceBetween={50}
@@ -85,6 +95,14 @@ const Swipe: FC = () => {
               </Layout>
             </SwiperSlide>
           ))}
+        <SwiperSlide>
+          <Layout className={styles.Swiper__NoRestaurantsAvailable}>
+            <Error Icon={Icon}>{text}</Error>
+            <IconLink to={BASE} Icon={House}>
+              Búsquemos de nuevo
+            </IconLink>
+          </Layout>
+        </SwiperSlide>
       </Swiper>
     </>
   );

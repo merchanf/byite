@@ -1,17 +1,17 @@
-import { FC } from 'react';
 import cx from 'classnames';
-import { Error as ErrorIcon } from '@icons/index';
+import { Error as ErrorIcon, IIconProps } from '@icons/index';
 import styles from './Error.module.scss';
 
-interface IError {
+interface IErrorProps {
   children: string;
   className?: string;
+  Icon?: React.FC<IIconProps>;
 }
 
-const Error: FC<IError> = ({ children, className }) => {
+const Error = ({ children, className, Icon = ErrorIcon }: IErrorProps) => {
   return (
     <div className={cx(styles.Error, className)}>
-      <ErrorIcon className={styles.Error__Icon} />
+      <Icon className={styles.Error__Icon} />
       <p>{children}</p>
     </div>
   );

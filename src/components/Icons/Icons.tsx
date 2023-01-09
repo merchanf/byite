@@ -15,6 +15,9 @@ import {
   faCarSide,
   faSliders,
   faArrowLeft,
+  faFaceFrown,
+  faHouse,
+  faFaceDizzy,
 } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import FaIcon from './BaseFontAwesomeIcon';
@@ -87,6 +90,18 @@ const BackArrow: FC<IIconProps> = ({ className }) => (
   <FaIcon className={className} icon={faArrowLeft} />
 );
 
+const House: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faHouse} />
+);
+
+const FaceFrown: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faFaceFrown} />
+);
+
+const FaceDizzy: FC<IIconProps> = ({ className }) => (
+  <FaIcon className={className} icon={faFaceDizzy} />
+);
+
 export {
   ArrowRight,
   ArrowLeft,
@@ -96,7 +111,10 @@ export {
   Copy,
   Directions,
   Error,
+  FaceDizzy,
+  FaceFrown,
   Heart,
+  House,
   PersonDress,
   PersonRunning,
   PersonWalking,
