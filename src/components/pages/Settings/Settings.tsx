@@ -1,5 +1,6 @@
 import { FC, ChangeEvent } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { debounce } from '@mui/material';
 import {
   Subtitle,
   Paragraph,
@@ -28,12 +29,26 @@ const Settings: FC = () => {
   const [radius, setRadius] = useRecoilState(radiusAtom);
   const [openNow, setOpenNow] = useRecoilState(openNowAtom);
 
+  const debouncedSetRadius = debounce((value: number) => {
+    session.setRadius(userUid, value);
+  }, 2000);
+
+  const debouncedSetOpenNow = debounce((value: boolean) => {
+    session.setOpenNow(userUid, value);
+  }, 2000);
+
   const onToggleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOpenNow(!e.target.checked);
+    debouncedSetOpenNow(!e.target.checked);
   };
 
   const handleOnClick = async () => {
     await session.setSettings(userUid, radius, openNow);
+  };
+
+  const handleOnSlide = (value: number) => {
+    setRadius(value);
+    debouncedSetRadius(value);
   };
 
   const getValue = (value: number) =>
@@ -56,7 +71,7 @@ const Settings: FC = () => {
       <DistanceSlider
         className={styles.Settings__Slider}
         value={getValue(radius)}
-        onChange={setRadius}
+        onChange={handleOnSlide}
       />
       <Subtitle className={styles.Settings__Subtitle}>
         ¿Quieres ver restaurantes que estén cerrados?

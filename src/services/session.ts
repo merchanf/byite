@@ -72,10 +72,28 @@ const getOpenNow = async (userUid: string): Promise<boolean> => {
   return true;
 };
 
+const setOpenNow = async (userUid: string, openNow: boolean) => {
+  const db = getFirestore();
+  const docRef = doc(db, 'users', userUid);
+  await updateDoc(docRef, {
+    openNow,
+  });
+};
+
+const setRadius = async (userUid: string, radius: number) => {
+  const db = getFirestore();
+  const docRef = doc(db, 'users', userUid);
+  await updateDoc(docRef, {
+    radius,
+  });
+};
+
 export default {
   get,
   create,
   setSettings,
   getRadius,
   getOpenNow,
+  setRadius,
+  setOpenNow,
 };

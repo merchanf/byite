@@ -29,6 +29,7 @@ const setUserUid = (): string => {
   if (!userUid) {
     userUid = uid();
     localStorage.setItem('userUid', userUid);
+    userService.create(userUid);
   }
   return userUid;
 };
@@ -67,7 +68,6 @@ const hydrate = async () => {
   setRecoil(openNowAtom, openNow);
 
   sessionService.create(sessionId);
-  userService.create(userUid);
   userService.addSession(userUid, sessionId);
 };
 
