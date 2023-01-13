@@ -11,6 +11,7 @@ import {
   emailAtom,
   radiusAtom,
   openNowAtom,
+  analyticsAtom,
 } from '@recoil/index';
 import sessionService from './session';
 import userService from './user';
@@ -19,8 +20,9 @@ import { initGoogleMaps } from './googleMaps';
 const initFirebase = async () => {
   const app = getRecoil(firebaseAppAtom);
   if (!app) {
-    getAnalytics(app);
+    const analytics = getAnalytics(app);
     getFirestore(app);
+    setRecoil(analyticsAtom, analytics);
   }
 };
 

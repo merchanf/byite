@@ -1,4 +1,4 @@
-import firebaseAppAtom from './firebase';
+import { firebaseAppAtom, analyticsAtom } from './firebase';
 import gMapsInstanceAtom from './googleMaps';
 import {
   geoLocationAtom,
@@ -14,6 +14,7 @@ import {
 } from './session';
 
 export {
+  analyticsAtom,
   firebaseAppAtom,
   gMapsInstanceAtom,
   geoLocationAtom,

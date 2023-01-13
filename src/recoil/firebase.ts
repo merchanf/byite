@@ -27,4 +27,8 @@ const firebaseAppAtom = atom({
   default: initializeApp(config),
 });
 
-export default firebaseAppAtom;
+const analyticsAtom = atom({
+  key: 'analyticsAtom',
+});
+
+export { firebaseAppAtom, analyticsAtom };
