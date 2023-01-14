@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Heart } from '@icons/index';
+import { Heart } from '@components/icons/index';
 import ClickableIcon from './ClickableIcon';
 
 export default {
