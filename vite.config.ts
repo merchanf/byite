@@ -80,10 +80,6 @@ export default defineConfig({
         replacement: path.resolve(__dirname, './src/components'),
       },
       {
-        find: '@icons',
-        replacement: path.resolve(__dirname, './src/components/icons'),
-      },
-      {
         find: '@pages',
         replacement: path.resolve(__dirname, './src/components/pages'),
       },
@@ -110,6 +106,10 @@ export default defineConfig({
       {
         find: '@utils',
         replacement: path.resolve(__dirname, './src/utils'),
+      },
+      {
+        find: '@icons',
+        replacement: path.resolve(__dirname, './src/components/icons'),
       },
     ],
   },
