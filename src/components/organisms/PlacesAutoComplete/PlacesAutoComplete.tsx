@@ -14,7 +14,7 @@ import styles from './PlacesAutoComplete.module.scss';
 interface IPlacesAutoComplete {
   setGeoLocation: (geoLocation: IGeoLocation) => void;
   country: string;
-  googleMapsInstance: google.maps.Map;
+  googleMapsInstance?: google.maps.Map;
 }
 
 const { GOOGLE_API_KEY } = env;
@@ -39,7 +39,7 @@ const PlacesAutoComplete: FC<IPlacesAutoComplete> = ({
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       setLoading(true);
-      if (zone?.value?.place_id) {
+      if (zone?.value?.place_id && googleMapsInstance) {
         await getRestaurantDetails(
           zone.value.place_id,
           googleMapsInstance,

@@ -12,5 +12,5 @@ const setGeoLocation = (geoLocation: IGeoLocation) => {
 };
 
 export const Default = () => (
-  <PlacesAutoComplete setGeoLocation={setGeoLocation} />
+  <PlacesAutoComplete setGeoLocation={setGeoLocation} country="CO" />
 );
