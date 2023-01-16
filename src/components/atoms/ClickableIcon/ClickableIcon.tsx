@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cx from 'classnames';
-import { IIconProps } from '../../icons/index';
+import { IIconProps } from '@icons/types';
 import Paragraph from '../Paragraph/Paragraph';
 import styles from './ClickableIcon.module.scss';
 

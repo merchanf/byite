@@ -1,5 +1,6 @@
 import cx from 'classnames';
-import { Error as ErrorIcon, IIconProps } from '@icons/index';
+import { IIconProps } from '@icons/types';
+import { Error as ErrorIcon } from '@icons/index';
 import styles from './Error.module.scss';
 
 interface IErrorProps {

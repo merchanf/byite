@@ -19,7 +19,6 @@ import {
   Share,
   WhatsApp,
 } from './Icons';
-import type { IIconProps } from './Icons';
 
 export {
   ArrowRight,
@@ -42,5 +41,3 @@ export {
   Share,
   WhatsApp,
 };
-
-export type { IIconProps };

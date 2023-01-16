@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import cx from 'classnames';
 import { useNavigate } from 'react-router-dom';
-import { IIconProps } from '@icons/index';
+import { IIconProps } from '@icons/types';
 import styles from './IconLink.module.scss';
 
 interface IconLinkProps {
