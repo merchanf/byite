@@ -5,7 +5,10 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      jsxRuntime: 'automatic',
+      fastRefresh: true,
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
@@ -119,5 +122,8 @@ export default defineConfig({
         additionalData: `@import "./src/styles/main";`,
       },
     },
+  },
+  build: {
+    minify: false,
   },
 });

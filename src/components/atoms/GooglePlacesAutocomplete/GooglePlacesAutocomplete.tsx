@@ -1,7 +1,11 @@
 import { FC } from 'react';
-import GPA from 'react-google-places-autocomplete';
+import GPA_ from 'react-google-places-autocomplete';
 import type IGooglePlacesAutocomplete from '@interfaces/googlePlacesAutocomplete';
 import styles from './GooglePlacesAutocomplete.styles';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const GPA = GPA_.default ? GPA_.default : GPA_;
 
 interface IProps {
   apiKey: string;
