@@ -11,7 +11,7 @@ import {
 import { DistanceSlider, IconLink } from '@components/molecules/index';
 import { Close } from '@icons/index';
 import {
-  //  radiusAtom,
+  radiusAtom,
   countryAtom,
   //  openNowAtom,
   //  userUidAtom,
@@ -26,8 +26,8 @@ const { SELECT_LOCATION } = routes;
 const Settings: FC = () => {
   // const userUid = useRecoilValue(userUidAtom);
   const [country, setCountry] = useRecoilState(countryAtom);
-  /*
   const [radius, setRadius] = useRecoilState(radiusAtom);
+  /*
   const [openNow, setOpenNow] = useRecoilState(openNowAtom);
   
   
@@ -48,15 +48,15 @@ const Settings: FC = () => {
   const handleOnClick = async () => {
     await session.setSettings(userUid, radius, openNow);
   };
+  */
 
   const handleOnSlide = (value: number) => {
     setRadius(value);
-    debouncedSetRadius(value);
+    // debouncedSetRadius(value);
   };
 
   const getValue = (value: number) =>
     value <= 1000 ? value / 100 : 9 + value / 1000;
-    */
 
   return (
     <Layout className={styles.Settings}>
@@ -67,6 +67,15 @@ const Settings: FC = () => {
         className={styles.Settings__Dropdown}
         onSelect={setCountry}
         selected={country}
+      />
+      <Subtitle className={styles.Settings__Subtitle}>
+        ¿Que tanto queremos caminar?
+      </Subtitle>
+      <DistanceCalculator radius={radius} />
+      <DistanceSlider
+        className={styles.Settings__Slider}
+        value={getValue(radius)}
+        onChange={handleOnSlide}
       />
     </Layout>
   );
