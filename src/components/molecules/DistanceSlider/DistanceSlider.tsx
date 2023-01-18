@@ -31,7 +31,7 @@ const DistanceSlider = ({
   const [innerValue, setValue] = useState<number>(value);
 
   useEffect(() => {
-    console.log('Slider', {
+    console.log('DistanceSlider', {
       innerValue,
     });
   }, [innerValue]);

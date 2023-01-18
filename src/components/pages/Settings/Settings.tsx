@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { FC, ChangeEvent } from 'react';
+import { FC, ChangeEvent, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { debounce } from '@mui/material';
 import {
@@ -28,6 +28,14 @@ const Settings: FC = () => {
   // const userUid = useRecoilValue(userUidAtom);
   const [country, setCountry] = useRecoilState(countryAtom);
   const [radius, setRadius] = useRecoilState(radiusAtom);
+
+  useEffect(() => {
+    console.log('Settings', {
+      country,
+      radius,
+    });
+  }, [country, radius]);
+
   /*
   const [openNow, setOpenNow] = useRecoilState(openNowAtom);
   
@@ -51,17 +59,14 @@ const Settings: FC = () => {
   };
   */
 
-  console.log('handleOnSlide');
   const handleOnSlide = (value: number) => {
     setRadius(value);
     // debouncedSetRadius(value);
   };
 
-  console.log('getValue 1');
   const getValue = (value: number) =>
     value <= 1000 ? value / 100 : 9 + value / 1000;
 
-  console.log('render');
   return (
     <Layout className={styles.Settings}>
       <Subtitle className={styles.Settings__Subtitle}>
