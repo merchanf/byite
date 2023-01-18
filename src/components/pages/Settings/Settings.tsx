@@ -1,28 +1,20 @@
 /* eslint-disable no-console */
-import { FC, ChangeEvent, useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { debounce } from '@mui/material';
+import { FC, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import {
   Subtitle,
-  Paragraph,
   CountriesDropdown,
-  Toggle,
   DistanceCalculator,
 } from '@components/atoms/index';
-import { DistanceSlider, IconLink } from '@components/molecules/index';
-import { Close } from '@icons/index';
+import { DistanceSlider } from '@components/molecules/index';
 import {
   radiusAtom,
   countryAtom,
   //  openNowAtom,
   //  userUidAtom,
 } from '@recoil/index';
-import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
-import { session } from '@services/index';
 import styles from './Settings.module.scss';
-
-const { SELECT_LOCATION } = routes;
 
 const Settings: FC = () => {
   // const userUid = useRecoilValue(userUidAtom);

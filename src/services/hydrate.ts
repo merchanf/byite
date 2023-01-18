@@ -60,6 +60,12 @@ const hydrate = async () => {
   const sessionId = (await setSessionId(userUid)) as string;
   const email = await userService.getEmail(userUid);
   const radius = await sessionService.getRadius(userUid);
+  console.log('hydrate', {
+    userUid,
+    sessionId,
+    email,
+    radius,
+  });
   const openNow = await sessionService.getOpenNow(userUid);
 
   sessionStorage.setItem('sessionId', sessionId);
