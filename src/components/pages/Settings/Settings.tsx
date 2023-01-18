@@ -10,12 +10,12 @@ import {
 } from '@components/atoms/index';
 import { DistanceSlider, IconLink } from '@components/molecules/index';
 import { Close } from '@icons/index';
-/* import {
-  radiusAtom,
+import {
+  //  radiusAtom,
   countryAtom,
-  openNowAtom,
-  userUidAtom,
-} from '@recoil/index'; */
+  //  openNowAtom,
+  //  userUidAtom,
+} from '@recoil/index';
 import { routes } from '@constants/index';
 import { Layout } from '@components/templates/index';
 import { session } from '@services/index';
@@ -24,10 +24,12 @@ import styles from './Settings.module.scss';
 const { SELECT_LOCATION } = routes;
 
 const Settings: FC = () => {
-  /* const userUid = useRecoilValue(userUidAtom);
+  // const userUid = useRecoilValue(userUidAtom);
   const [country, setCountry] = useRecoilState(countryAtom);
+  /*
   const [radius, setRadius] = useRecoilState(radiusAtom);
   const [openNow, setOpenNow] = useRecoilState(openNowAtom);
+  
   
 
   const debouncedSetRadius = debounce((value: number) => {
@@ -61,6 +63,11 @@ const Settings: FC = () => {
       <Subtitle className={styles.Settings__Subtitle}>
         ¿En que país te encuentras?
       </Subtitle>
+      <CountriesDropdown
+        className={styles.Settings__Dropdown}
+        onSelect={setCountry}
+        selected={country}
+      />
     </Layout>
   );
 };
