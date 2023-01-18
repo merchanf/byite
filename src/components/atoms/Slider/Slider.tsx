@@ -1,5 +1,4 @@
-import { FC, useState, ReactNode } from 'react';
-import cx from 'classnames';
+import { useState, ReactNode, useCallback, useEffect } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import { SliderValueLabelProps } from '@mui/material/Slider';
 import MuiSlider from './MuiSlider';
@@ -27,7 +26,7 @@ const ValueLabelComponent = (props: SliderValueLabelProps) => {
   );
 };
 
-const Slider: FC<SliderProps> = ({
+const Slider = ({
   className,
   value,
   onChange,
@@ -38,13 +37,19 @@ const Slider: FC<SliderProps> = ({
   step,
   valueLabelFormat,
   calculateValue,
-}) => {
+}: SliderProps) => {
   const [innerValue, setInnerValue] = useState<number>(value);
 
-  const handleChange = (_: Event, newValue: number | number[]) => {
+  const handleChange = useCallback((_: Event, newValue: number | number[]) => {
     setInnerValue(newValue as number);
     onChange(newValue as number);
-  };
+  }, []);
+
+  useEffect(() => {
+    console.log('Slider', {
+      innerValue,
+    });
+  }, [innerValue]);
 
   return (
     <div className={className}>

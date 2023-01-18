@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Slider } from '@components/atoms/index';
 import { PersonDress, PersonWalking, CarSide } from '@components/icons/Icons';
 import styles from './DistanceSlider.module.scss';
@@ -23,18 +23,24 @@ const calculateValue = (value: number) => {
   return (value - 9) * 1000;
 };
 
-const DistanceSlider: FC<DistanceSliderProps> = ({
+const DistanceSlider = ({
   value,
   className,
   onChange,
-}) => {
+}: DistanceSliderProps) => {
   const [innerValue, setValue] = useState<number>(value);
 
-  const handleChange = (newValue: number) => {
+  useEffect(() => {
+    console.log('Slider', {
+      innerValue,
+    });
+  }, [innerValue]);
+
+  const handleChange = useCallback((newValue: number) => {
     const calculatedValue = calculateValue(newValue);
     setValue(calculatedValue);
     onChange(calculatedValue);
-  };
+  }, []);
 
   const marks = [
     {
