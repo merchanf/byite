@@ -55,8 +55,22 @@ const create = async (userUid: string) => {
   await setDoc(
     docRef,
     {
-      userUid,
       sessions: [],
+      timestamp: new Date(),
+      radius: 1000,
+      openNow: true,
+    },
+    { merge: true }
+  );
+  return null;
+};
+
+const updatePrevUser = async (userUid: string) => {
+  const db = getFirestore();
+  const docRef = doc(db, `users/${userUid}`);
+  await setDoc(
+    docRef,
+    {
       timestamp: new Date(),
       radius: 1000,
       openNow: true,
@@ -77,9 +91,22 @@ const getEmail = async (userUid: string) => {
   return '';
 };
 
+const get = async (userUid: string) => {
+  const db = getFirestore();
+  const docRef = doc(db, `users/${userUid}`);
+  const document = await getDoc(docRef);
+  if (document.exists()) {
+    const data = document.data();
+    return data;
+  }
+  return null;
+};
+
 export default {
+  get,
   addSession,
   addInfo,
   create,
   getEmail,
+  updatePrevUser,
 };

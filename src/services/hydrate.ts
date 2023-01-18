@@ -26,12 +26,28 @@ const initFirebase = async () => {
   }
 };
 
-const setUserUid = (): string => {
+const createNewUser = () => {
+  const userUid = uid();
+  localStorage.setItem('userUid', userUid);
+  userService.create(userUid);
+  return userUid;
+};
+
+const manageUser = async (): Promise<string> => {
   let userUid = localStorage.getItem('userUid');
   if (!userUid) {
-    userUid = uid();
-    localStorage.setItem('userUid', userUid);
-    userService.create(userUid);
+    userUid = createNewUser();
+  } else {
+    const data = await userService.get(userUid);
+    if (!data?.email) {
+      userService.updatePrevUser(userUid);
+      setRecoil(radiusAtom, 1000);
+      setRecoil(openNowAtom, true);
+    } else {
+      setRecoil(radiusAtom, data.radius);
+      setRecoil(openNowAtom, data.openNow);
+      setRecoil(emailAtom, data.email);
+    }
   }
   return userUid;
 };
@@ -56,24 +72,12 @@ const setSessionId = async (userUid: string) => {
 const hydrate = async () => {
   initFirebase();
   initGoogleMaps();
-  const userUid = setUserUid();
+  const userUid = await manageUser();
   const sessionId = (await setSessionId(userUid)) as string;
-  const email = await userService.getEmail(userUid);
-  const radius = await sessionService.getRadius(userUid);
-  console.log('hydrate', {
-    userUid,
-    sessionId,
-    email,
-    radius,
-  });
-  const openNow = await sessionService.getOpenNow(userUid);
 
   sessionStorage.setItem('sessionId', sessionId);
   setRecoil(sessionIdAtom, sessionId);
   setRecoil(userUidAtom, userUid);
-  setRecoil(emailAtom, email);
-  setRecoil(radiusAtom, radius);
-  setRecoil(openNowAtom, openNow);
 
   sessionService.create(sessionId);
   userService.addSession(userUid, sessionId);
