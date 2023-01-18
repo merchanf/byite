@@ -29,6 +29,7 @@ const Settings: FC = () => {
   const [country, setCountry] = useRecoilState(countryAtom);
   const [radius, setRadius] = useRecoilState(radiusAtom);
 
+  console.log('useEffect');
   useEffect(() => {
     console.log('Settings', {
       country,
@@ -60,6 +61,7 @@ const Settings: FC = () => {
   */
 
   const handleOnSlide = (value: number) => {
+    console.log('handleOnSlide', value);
     setRadius(value);
     // debouncedSetRadius(value);
   };
