@@ -32,11 +32,7 @@ const SelectLocation: FC = () => {
     if (value) {
       setGeoLocation(value);
       userXLocation.add(userUid, value);
-      if (email) {
-        navigate(SWIPE);
-      } else {
-        navigate(WHOAMI);
-      }
+      navigate(WHOAMI);
     }
   };
 

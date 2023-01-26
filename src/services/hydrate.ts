@@ -39,7 +39,7 @@ const manageUser = async (): Promise<string> => {
     userUid = createNewUser();
   } else {
     const data = await userService.get(userUid);
-    if (!data?.email) {
+    if (!data?.radius) {
       userService.updatePrevUser(userUid);
       setRecoil(radiusAtom, 1000);
       setRecoil(openNowAtom, true);

@@ -26,8 +26,12 @@ const Launcher: FC = () => {
 
   return isHydrating ? (
     <div className={styles.Launcher}>
-      <img className={styles.Launcher__Logo} src={Logo} alt="Logo de Byite" />
-      <Title className={styles.Launcher__Title}>Byite</Title>
+      <img
+        className={styles.Launcher__Logo}
+        src={Logo}
+        alt="Logo de ESCOGETU"
+      />
+      <Title className={styles.Launcher__Title}>ESCOGETU</Title>
     </div>
   ) : (
     <Navigate to={navigateTo} state={state} />
