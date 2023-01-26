@@ -32,7 +32,7 @@ const SelectLocation: FC = () => {
     if (value) {
       setGeoLocation(value);
       userXLocation.add(userUid, value);
-      navigate(WHOAMI);
+      navigate(SWIPE);
     }
   };
 
